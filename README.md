@@ -1,7 +1,35 @@
 # oneonta
 
-Processing soccer news feeds. Reads RSS/Atom feeds and returns a flat list of news
-items for the build to load.
+Soccer news for the site. Reads RSS/Atom feeds, keeps every item and the text of
+its article in an archive under `data/`, and hands the build a flat list of items.
+
+## fetch.py
+
+The command that talks to the network. It reads the feeds for new items, appends
+them to the archive, then fetches the page of every archived item that has no text
+yet, five seconds apart. Stop it whenever; the next run carries on.
+
+    cd ~/soccer
+    build/.venv/bin/python -m oneonta.fetch [--limit N] [--no-feeds]
+
+Commit `data/` afterwards. The archive is the news history: the build reloads all of
+it every time, so nothing is lost when the database is rebuilt.
+
+## archive.py
+
+- `data/items.jsonl` — one line per item in the order first seen, with the feed
+  fields plus `seen`, the date it was first archived
+- `data/text/<source>/<id>.txt` — the article's paragraphs, blank-line separated;
+  `id` is the first twelve hex digits of the url's SHA-1. An empty file means the
+  page was fetched and held no article (a 404, or a layout the extractor doesn't
+  know), so it is not asked for again.
+- `load_items()` — the archive as the build loads it
+- `add_items(rows)` — append feed rows whose url is new
+
+## articles.py
+
+- `BODIES` — which element holds the story on each site, by host
+- `extract(url, html)` — the paragraphs inside it, or `[]` for an unknown site
 
 ## feeds.py
 
@@ -15,12 +43,13 @@ items for the build to load.
 Each item is `{title, summary, url, dt, source}`. `dt` is a naive local datetime;
 `source` is the display name from the feed list, not the url.
 
-Run it on its own to print the newest items and the total count:
+Run it on its own to print the newest items the feeds currently return:
 
     cd ~/soccer
     build/.venv/bin/python -m oneonta.feeds
 
-Tests parse saved copies of the feeds under `tests/fixtures`, so they need no network:
+Tests parse saved copies of the feeds and of one article page per site under
+`tests/fixtures`, so they need no network:
 
     build/.venv/bin/python -m pytest oneonta/tests
 
@@ -30,11 +59,13 @@ Depends on `feedparser`.
 
 The feeds are one leaf of the soccer pipeline:
 
-    oneonta.parse_feeds() -> soccer_db.news -> s2 news.FeedItem -> /news/
+    feeds -> oneonta.fetch -> data/ -> archive.load_items() -> soccer_db.news
+                                                          -> s2 news.FeedItem -> /news/
 
-The build calls it from `load_news()` (`build/make/load.py`), which loads the items
-into mongo through `generic_load`. s2's own `load_news()` (`s2/build/load.py`) reads
-that collection and creates a `FeedItem` per row.
+The build calls `load_items()` from `load_news()` (`build/make/load.py`), which loads
+the items into mongo through `generic_load`. s2's own `load_news()`
+(`s2/build/load.py`) reads that collection and creates a `FeedItem` per row. Only
+the feed fields reach the database; the article text stays in the archive.
 
 Two couplings are worth knowing before editing the feed list:
 
@@ -47,5 +78,5 @@ Two couplings are worth knowing before editing the feed list:
 
 Two feeds: ESPN soccer, which exposes only the last day or so of items, and American
 Soccer Now, which publishes its entire archive back to 2012 (about 6,500 items, a
-6MB fetch) and is loaded in full. The build loads both and s2 serves them at `/news/`.
-See [ROADMAP.md](ROADMAP.md) for what needs doing.
+6MB fetch). Both are in the archive and s2 serves them at `/news/`. See
+[ROADMAP.md](ROADMAP.md) for what needs doing.

@@ -3,12 +3,14 @@
 Read [README.md](README.md) first for what this package does and where it sits in the
 pipeline; [ROADMAP.md](ROADMAP.md) has the open work.
 
-This is a small repo — `feeds.py` is the whole of it. It is a sibling of `build`,
-`s2`, `metadata` and `parse` under `~/soccer/`, and is imported as `oneonta.feeds`
-with `~/soccer` on the path. There is no venv here; use the build's:
+This is a small repo: `feeds.py` reads the feeds, `articles.py` finds the story on a
+page, `archive.py` is the store under `data/`, and `fetch.py` is the command that
+runs them. It is a sibling of `build`, `s2`, `metadata` and `parse` under `~/soccer/`,
+and is imported as `oneonta.<module>` with `~/soccer` on the path. There is no venv
+here; use the build's:
 
     cd ~/soccer
-    build/.venv/bin/python -m oneonta.feeds
+    build/.venv/bin/python -m oneonta.fetch
 
 ## Changing the feed list
 
@@ -18,15 +20,20 @@ with `~/soccer` on the path. There is no venv here; use the build's:
   then check that the newest item is recent and that there are enough of them.
 - Keep the display name matched to an entry in `metadata/data/sources`. An unmatched
   name doesn't fail, it quietly creates a second `Source` in s2.
-- Feeds are fetched over the network in the middle of an otherwise offline build, so
-  nothing here may raise on a dead host, a timeout or a malformed document. Warn and
-  carry on.
+- Nothing in `feeds.py` may raise on a dead host, a timeout or a malformed document.
+  Warn and carry on, so a fetch run with one feed down still archives the other.
+- A new site needs an entry in `articles.BODIES` and a saved page in `tests/fixtures`,
+  or its items archive with empty text.
 
 ## Output contract
 
-`parse_feeds()` returns dicts consumed directly as `FeedItem(**row)` fields, so the
-keys are fixed: `title`, `summary`, `url`, `dt`, `source`. Changing them means changing
-`s2/build/load.py` and `s2/build/update.py` with it.
+`archive.load_items()` returns dicts consumed directly as `FeedItem(**row)` fields, so
+the keys are fixed: `title`, `summary`, `url`, `dt`, `source`. Changing them means
+changing `s2/build/load.py` and `s2/build/update.py` with it. The article text is
+deliberately not among them; the database keeps the summary only.
+
+The build never touches the network. Only `fetch.py` does, and `data/` is committed,
+so a build on a fresh clone has the whole history.
 
 - s2 runs `USE_TZ = False`, so `dt` must be a naive *local* datetime. feedparser's
   `published_parsed` is UTC; convert with `calendar.timegm`, not `time.mktime`.
@@ -36,6 +43,8 @@ keys are fixed: `title`, `summary`, `url`, `dt`, `source`. Changing them means c
 
 ## Be gentle
 
-The sibling `scrapers` repo states the house request policy; the same spirit applies
-here even though this is only a handful of feeds. Don't poll in a loop while testing —
-save a response to a file and work against that. `tests/fixtures` has one per feed.
+`fetch.py` follows the sibling `scrapers` repo's request policy: five seconds between
+page requests, retries only on transient failures, and never a second request for a
+page already archived. Keep it that way. Don't poll in a loop while testing — save a
+response to a file and work against that. `tests/fixtures` has one per feed and one
+article page per site.

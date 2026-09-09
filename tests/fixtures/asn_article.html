@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html class='ng-app:AsnApp' id='ng-app' ng-app='AsnApp' ng-controller='WindowCtrl'>
+<head>
+<title>
+ASN article: Euro Notebook: Bello &amp; Freeman make UCL debuts, Wynalda lands coaching job, Reyna impresses, &amp; more
+</title>
+<meta content='http://americansoccernow.com/articles/euro-notebook-bello-amp-freeman-make-ucl-debuts-wynalda-lands-coaching-job-reyna-impresses-amp-more' property='og:url'>
+<meta content='ASN: Euro Notebook: Bello &amp; Freeman make UCL debuts, Wynalda lands coaching job, Reyna impresses, &amp; more' property='og:title'>
+<meta content="ASN's Brian Sciaretta gives his thougths on the news from the past week among Americans in Europe" property='og:description'>
+<meta content='http://s3.amazonaws.com/assets.thisisasn.com/production/attacheds/16886/original/George_Bello_-_ASN_TOP_-_LASK_vs._AEK_-_Champions_League_-_2026-9-8.jpg?1788921266' property='og:image'>
+<meta content='ASN: Euro Notebook: Bello &amp; Freeman make UCL debuts, Wynalda lands coaching job, Reyna impresses, &amp; more' property='title'>
+<meta content="ASN's Brian Sciaretta gives his thougths on the news from the past week among Americans in Europe" property='description'>
+<meta property='keywords'>
+<link href='http://s3.amazonaws.com/assets.thisisasn.com/production/attacheds/16886/original/George_Bello_-_ASN_TOP_-_LASK_vs._AEK_-_Champions_League_-_2026-9-8.jpg?1788921266' rel='image_src'>
+<link href="/feed" rel="alternate" title="ATOM" type="application/atom+xml" />
+<link href="/feed.rss" rel="alternate" title="RSS" type="application/rss+xml" />
+
+<link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Alfa+Slab+One" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/article_slideshows.css" media="screen" rel="stylesheet" type="text/css" />
+
+<script src="/assets/application.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+<script>
+  var jq1102 = jQuery.noConflict(true);
+</script>
+<script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+<script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
+<!-- = javascript_include_tag "window.jq172=$.noconflict();" -->
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="RDl/fb3amrHe7vKhsSxZq8b1W7Cygv651YFlU/gCA4k=" name="csrf-token" />
+<script>
+   var _gaq = _gaq || [];
+   _gaq.push(['_setAccount', 'UA-35134803-1']);
+   _gaq.push(['_setDomainName', 'americansoccernow.com']);
+   _gaq.push(['_trackPageview']);
+  
+   (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+   })();
+</script>
+
+<link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+
+<script src="/assets/social_follow.js" type="text/javascript"></script>
+<script>
+  $(function() {
+    function fetch_random_formation(obj) {
+      var temp_key, keys = [];
+      for(temp_key in obj) {
+        if(obj.hasOwnProperty(temp_key)) {
+          keys.push(temp_key);
+        }
+      }
+      return keys[Math.floor(Math.random() * keys.length)];
+    }
+  
+    window.setInterval(function() {
+      // figure out the current class and get the next class
+      var new_formation = null;
+      while (new_formation == null) {
+        var random_formation = fetch_random_formation(formations);
+        if (!$('#mini_field').hasClass('formation_' + random_formation)) {
+          new_formation = random_formation;
+        }
+      }
+      setFormation(new_formation);
+    }, 3000);
+  
+  
+    marginLeft = function(num_in_row, index) {
+      switch(num_in_row) {
+        case 1:
+          return '134px';
+        case 2:
+          switch (index) {
+            case 0:
+              return '113px';
+            case 1:
+              return '155px';
+          }
+        case 3:
+          switch (index) {
+            case 0:
+              return '91px';
+            case 1:
+              return '134px';
+            case 2:
+              return '177px';
+          }
+        case 4:
+          switch (index) {
+            case 0:
+              return '71px';
+            case 1:
+              return '113px';
+            case 2:
+              return '155px';
+            case 3:
+              return '197px';
+          }
+        case 5:
+          switch (index) {
+            case 0:
+              return '48px'
+            case 1:
+              return '91px';
+            case 2:
+              return '134px';
+            case 3:
+              return '177px';
+            case 4:
+              return '220px';
+          }
+      }
+    }
+  
+    marginTop = function(row) {
+      switch(row) {
+        case 0:
+          return '10px';
+        case 1: 
+          return '60px';
+        case 2:
+          return '110px';
+        case 3:
+          return '160px';
+  
+      }
+    }
+    setFormation = function(formation) {
+      var formation_rows = formations[formation]['rows'];
+      var num_rows = formation_rows.length;
+      for (var i = 0; i < num_rows; i++ ) {
+        var row = formation_rows[i];
+        var player_row_count = row.length;
+  
+        for (var column_count = 0; column_count < player_row_count; column_count++) {
+          var player_id = row[column_count];
+          if (player_id) {
+            var css = {marginTop: marginTop(i), marginLeft: marginLeft(player_row_count, column_count)};
+            $('#player_' + player_id).animate(css, 200, 'swing');
+          }
+        }
+      }
+    }
+    setFormation('3331');
+    $('#mini_field').live('click', function() {
+      window.location = $(this).data('link');
+    });
+  
+  });
+</script>
+
+<style>
+  .gradient {filter: none !important;}
+</style>
+</head>
+<body>
+<div id='container'>
+<div class='channel' id='header'>
+<div id="logo">
+  <a href="/"><img alt="Asn-logo-172" src="/assets/ASN-logo-172.jpg" /></a>
+</div>
+<div id="adRight">
+  <div class="burst" style="padding-top: 0px; padding-bottom: 0px;">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-3838773428570314" data-ad-slot="2229800621">
+</ins>
+<script type="text/javascript">
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+  </div>
+</div>
+<div class="clear">
+</div>
+
+<div id='secretNavContainer'></div>
+<div id='nav'>
+<ul class='stable'>
+<li>
+<a href='/'>
+Home
+<span class='circle'></span>
+</a>
+</li>
+<li class='active'>
+<a href='/asn-news'>
+News
+<span class='circle'></span>
+</a>
+</li>
+<li>
+<a href='/asn-100'>
+ASN 100
+<span class='circle'></span>
+</a>
+</li>
+<li>
+<a href='/starting_xis/new'>
+Starting XI
+<span class='circle'></span>
+</a>
+</li>
+<li>
+<a href='/roster'>
+2022 World Cup
+<span class='circle'></span>
+</a>
+</li>
+<li>
+<a href='/player_ratings'>
+Ratings
+<span class='circle'></span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div id='content'>
+
+<script>
+  $(document).ready(function() {
+    $('#slideshowContainer ul#slides').cycle({
+      fx: 'fade',
+      timeout: 7000, //stop auto for dev
+      prev: '#slideshowContainer .prev',
+      next: '#slideshowContainer .next, #slideshowContainer .photoContainer',
+      before: onAfter
+    });
+  
+    //$('#slideshowContainer .photoContainer').cycle('next');
+    function onAfter(curr,next,opts) {
+      $('.slideshow-count').html(($(next).index() + 1) + ' of ' + opts.slideCount);
+    }
+  
+    $('#slideshowInset').click(function(){
+  
+      // REMOVE THIS LINE IN PROD
+      if (true) {
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_trackPageview', document.URL+"/slideshow"]);
+      }
+  
+      $.colorbox({"inline": true , href:"#slideshowContainer"});
+    });
+  
+    $('#slideshowContainer .play').click(function(e){
+      e.preventDefault();
+      $("#play_image").attr("src", "/assets/play_selected.png");
+      $("#pause_image").attr("src", "/assets/pause.png");
+      $('#slideshowContainer ul#slides').cycle('resume');
+    });
+  
+    $('#slideshowContainer .pause').click(function(e){
+      e.preventDefault();
+      $("#pause_image").attr("src", "/assets/pause_selected.png");
+      $("#play_image").attr("src", "/assets/play.png");
+      $('#slideshowContainer ul#slides').cycle('pause');
+    });
+  
+    $('#slideshowContainer ul#slides').cycle('pause');
+  });
+</script>
+<div id='main'>
+<div id='asn_news'>
+<div id='articleIMG'>
+<img alt="George_bello_-_asn_top_-_lask_vs._aek_-_champions_league_-_2026-9-8" height="400" src="http://s3.amazonaws.com/assets.thisisasn.com/production/attacheds/16886/original/George_Bello_-_ASN_TOP_-_LASK_vs._AEK_-_Champions_League_-_2026-9-8.jpg?1788921266" width="568" />
+<span class='imageCaption'>
+
+</span>
+</div>
+<div id='article'>
+<h5>European notebook</h5>
+<h2 class='title'>Euro Notebook: Bello & Freeman make UCL debuts, Wynalda lands coaching job, Reyna impresses, & more</h2>
+<div class='dek'>
+ASN's Brian Sciaretta gives his thougths on the news from the past week among Americans in Europe
+</div>
+<div class='arct'>
+<div id='articleArtifacts'>
+<span class='posted'>
+BY
+<span class='name'>
+Brian Sciaretta
+</span>
+</span>
+<span class='posted'>
+Posted
+<br>
+September 08, 2026
+<br>
+ 7:55 PM
+<!-- / Posted July 24, 2012 8:00 AM -->
+</span>
+<div id='secretSocial'></div>
+<ul class='socialIcons'>
+<li>
+<span class='red'>
+SHARE THIS STORY
+</span>
+</li>
+<li>
+<!-- AddThis Button BEGIN -->
+<div addthis:description="ASN's Brian Sciaretta gives his thougths on the news from the past week among Americans in Europe" addthis:title='ASN: Euro Notebook: Bello &amp; Freeman make UCL debuts, Wynalda lands coaching job, Reyna impresses, &amp; more' addthis:url='http://americansoccernow.com/articles/euro-notebook-bello-amp-freeman-make-ucl-debuts-wynalda-lands-coaching-job-reyna-impresses-amp-more' class='addthis_toolbox addthis_32x32_style' style='left:50px;top:50px;'>
+<a class='addthis_button_twitter' style='cursor: pointer'></a>
+<a class='addthis_button_facebook' style='cursor: pointer'></a>
+<a href="http://americansoccernow.com/articles/euro-notebook-bello-amp-freeman-make-ucl-debuts-wynalda-lands-coaching-job-reyna-impresses-amp-more?print=true" target="_blank"><img alt="Print_icon" src="/assets/print_icon.png" /></a>
+</div>
+<script>
+  var addthis_share = {
+    templates : {
+      twitter : "{{title}} {{url}} @classicASN"
+    }
+  }
+</script>
+<script type='text/javascript'>
+var addthis_config = {"data_track_addressbar":false};
+</script>
+<script src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f1db98e5e671e9b&amp;domready=1' type='text/javascript'></script>
+<!-- AddThis Button END -->
+</li>
+
+</ul>
+</div>
+<p><strong>WE HOPE EVERYONE</strong> had a nice long Labor Day weekend and with that, there is even more news to break down than usual from across the Atlantic Ocean with regards to American players and coaches.</p>
+<p>One big takeaway is that we are now just about a month into the season and the early returns is that it has not been a good start for most of the U.S. World Cup veterans. The smallish contingent in the Premier League have not found much success. Christian Pulisic and Weston McKennie are injured. Auston Trusty and Celic could not qualify for the Champions League.</p>
+<p>The only exceptions have been Gio Reyna at Strasbourg, Sebastian Berhalter at Middlesbrough, and Malik Tillman at Bayer Leverkusen. Otherwise, it has not been great.</p>
+<p>But here are the top stories of the week.</p>
+<p>&nbsp;</p>
+<h4>Bello makes Champions League debut</h4>
+<p>&nbsp;</p>
+<p><strong>George Bello</strong>, 24, made his Champions League debut for LASK in a 1-0 away loss to AEK Athens on Tuesday. He played all 90 minutes and did not stand out either way for the Austrian champions.</p>
+<p>LASK is without its top center forward for the time being<strong> Sam Adeniran </strong>recently underwent surgery to repair a facial bone. The American has been LASK&rsquo;s best scorer to start this season.<br /><br /></p>
+<blockquote class="twitter-tweet">
+<p dir="ltr" lang="en">The UEFA Champions League kicks off in Greece with AEK Athens hosting LASK.<br />- Former Atlanta United left back George Bello will make his Champions League debut as he starts for LASK<br />- Fellow American and center forward Sam Adeniran is out for LASK with surgery to a facial bone <a href="https://t.co/b8gYRr96vF">pic.twitter.com/b8gYRr96vF</a></p>
+&mdash; Brian Sciaretta (@BrianSciaretta) <a href="https://x.com/BrianSciaretta/status/2097356134088667381?ref_src=twsrc%5Etfw">September 8, 2026</a></blockquote>
+<p>&nbsp;</p>
+<p>We don&rsquo;t know yet, but perhaps Bello has done enough to get back into the national team mix. He has been out of the picture since his move from Atlanta to Arminia Bielefeld in Germany went poorly.</p>
+<p>&nbsp;</p>
+<h4>Freeman features in Champions League</h4>
+<p>&nbsp;</p>
+<p>Alex Freeman came on to play the second half in Villarreal&rsquo;s visit to Borussia Dortmund in the Champions League on Wednesday. When Freeman came on, it was 0-0. Borussia Dortmund took a 1-0 lead before Villarreal equalized at 1-1. Ultimately, the German club prevailed at home 3-2.</p>
+<p>Freeman played well, just as he did over the weekend when he started in Villarreal&rsquo;s 3-2 loss to Deportivo Coruna on Saturday when he started and played all 90 minutes. Freeman played on the left side as opposed to his normal right side and was tasked with defending Julian Ryerson, which he handled well. He was also very effective in winning his duels, maintaining possession, and getting the ball forward.</p>
+<p>Based on his recent performances, Freeman looks as if he will soon be a regular starter for Villarreal.</p>
+<h4>&nbsp;</h4>
+<h4>Wynalda takes job in Estonia</h4>
+<p>&nbsp;</p>
+<p>There are not many head coaches of European teams that were born and raised in the United States, but <strong>Eric Wynalda</strong>, 57, is now one of them. The former U.S. national team forward has taken the job of FC N&otilde;mme United in Estonia, which was just promoted to the country&rsquo;s top league last season. &nbsp;</p>
+<p>The Talinn-based club is currently in a relegation battle in Estonia&rsquo;s top flight where it sits eighth in the 10-team league. It is currently even on points with the relegation-playoff position (ninth place) with 11 games to go in the season.</p>
+<p>&nbsp;</p>
+<h4>Reyna&rsquo;s impresses at Strasbourg</h4>
+<p>&nbsp;</p>
+<p>Gio Reyna started for Strasbourg over the weekend and scored in a 6-2 win over Troyes. His goal came in the 52<sup>nd</sup>&nbsp;minute when he took a short just inside the box and hit a shot that deflected and went into the goal.<br /><br /></p>
+<blockquote class="twitter-tweet">
+<p dir="ltr" lang="fr">????????? LE BUT DE GIOVANNI REYNA FACE &Agrave; L&rsquo;ESTAC !<br /><br />Vous reprendrez bien un peu de contre-pied de <a href="https://x.com/hashtag/Ligue1?src=hash&amp;ref_src=twsrc%5Etfw">#Ligue1</a> ? ????<br /><br />Retour en vid&eacute;o sur le but de Giovanni Reyna qui a permis au Racing Club de Strasbourg de faire le break face &agrave; Troyes. ????<br /><br />Source : <a href="https://x.com/RCSA?ref_src=twsrc%5Etfw">@RCSA</a> <a href="https://x.com/hashtag/ESTACRCSA?src=hash&amp;ref_src=twsrc%5Etfw">#ESTACRCSA</a> <a href="https://x.com/hashtag/RCSA?src=hash&amp;ref_src=twsrc%5Etfw">#RCSA</a> <a href="https://x.com/hashtag/Reyna?src=hash&amp;ref_src=twsrc%5Etfw">#Reyna</a> <a href="https://t.co/yh9mUo60Hp">https://t.co/yh9mUo60Hp</a> <a href="https://t.co/Ey1bUYD8B5">pic.twitter.com/Ey1bUYD8B5</a></p>
+&mdash; Hope Sport (@HopeSportFR) <a href="https://x.com/HopeSportFR/status/2096964162953822433?ref_src=twsrc%5Etfw">September 7, 2026</a></blockquote>
+<p>
+<script src="https://platform.x.com/widgets.js" async="" charset="utf-8"></script>
+</p>
+<p>But overall, it has been a very positive start to the season for Reyna who is getting what he wants &ndash; starts and playing time. He has now started each of Strasbourg&rsquo;s last two games which have both been convincing wins.<br /><br /></p>
+<h4>Scally and Campbell in Bundesliga battle</h4>
+<p>&nbsp;</p>
+<p>One of the best games over the weekend involving American players was Elversberg&rsquo;s 4-3 away win over Borussia Monchengladbach. The game featured two Americans in the starting lineups. Speeding winger <strong>Cole Campbell</strong> continued to get the nod for Elversberg while Joe Scally started at right back for M&rsquo;Gladbach.</p>
+<p>There was a lot to unpack from this game. First, Campbell was subbed out in the 64<sup>th</sup> minute with Elversberg down 3-1. He was not on the field for the team&rsquo;s three-goal comeback win. His replacement, Maurice Krattenmacher, scored two goals.<br /><br /><iframe title="YouTube video player" src="https://www.youtube.com/embed/G_jKROGpWHM?si=C0gboa64G1bov4u9" width="560" height="315" frameborder="0" allowfullscreen=""></iframe></p>
+<p><strong>Joe Scally</strong>, meanwhile, scored in the 56<sup>th</sup> minute to give M&rsquo;Gladbach a 3-1 lead. He was subbed out in the 77th minute with his team up 3-2, only to watch his teammates collapse late.</p>
+<p>The teams are heading in completely different directions. M&rsquo;Gladbach has two losses from two games to start the season while newly-promoted Elversberg has two wins from two games.</p>
+<p>Campbell might not start every game this season, but he has found his best possible place for playing time. For Scally, this seems like his final year at M&rsquo;Gladbach.</p>
+<p>&nbsp;</p>
+<h4>Musah continues revival</h4>
+<p>&nbsp;</p>
+<p><strong>Yunus Musah</strong> continued his surprising start to the season with AC Milan where new head coach Ruben Amorim continues to see the U.S. international has his starting central midfielder, despite his terrible 2025/26 season where Milan shipped him on loan to Atalanta &ndash; only to continue to see him struggle for minutes.</p>
+<p>On Sunday, Musah played all 90 minutes in a 1-1 away draw with Juventus. He was regularly solid with the ball and his passing was effective. But most important was the absence of the glaring mistakes that have plagued him in the past.</p>
+<p>Musah is in a great place now. He should be a part of Milan&rsquo;s push to get back into the Champions League next season and he will likely return to the U.S. national team soon.</p>
+<p>Meanwhile, <strong>Christian Pulisic</strong> did not get off the bench for Milan after he missed the preseason with his hairline fracture. <strong>Weston McKennie</strong> also is out with an unspecified muscle injury.</p>
+<p>&nbsp;</p>
+<h4>Bombino &amp; McGlynn feature in Stoke draw</h4>
+<p>&nbsp;</p>
+<p>In a midweek slate of Championship games, Stoke City played Cardiff City to a 1-1 away draw in Wales on Tuesday night. <strong>Luca Bombino</strong> started for Stoke and played 59 minutes while <strong>Jack McGlynn</strong> came into the game in the 69<sup>th</sup> minute.</p>
+<p>Unlike his debut where he played on the right side, Bombino shifted back to his normal right left wingback position. He did not get on the ball that much but played well defensively and handled the physical side of the game well.<br /><br /></p>
+<blockquote class="twitter-tweet">
+<p dir="ltr" lang="en">46' The action resumes in Cardiff.<br /><br />???? 0-1 ?????? <a href="https://t.co/XCrDiULruj">pic.twitter.com/XCrDiULruj</a></p>
+&mdash; Stoke City FC (@stokecity) <a href="https://x.com/stokecity/status/2097411316646338963?ref_src=twsrc%5Etfw">September 8, 2026</a></blockquote>
+<p>&nbsp;</p>
+<p>McGlynn also struggled to get on the ball and only was 4/4 in passing but got involved defensively to help preserve the away draw.</p>
+<p>After losing three games to start the season, Stoke City has two wins and a draw since the two American players arrived.</p>
+<p>&nbsp;</p>
+<h4>Yanks in the Carabao Cup</h4>
+<p>&nbsp;</p>
+<p>The EFL Cup, aka the Carabao Cup, in England always has a mixed level of importance with clubs as it features a mix of regulars, backups, and youth players.</p>
+<p><strong>Tyler Adams</strong> remained on the bench for Bournemouth in its 4-0 win over Lincoln City.</p>
+<p>Crystal Palace defeated Middlesbrough 3-0. <strong>Zavier Gozo</strong> played the last 17 minutes in the win but did not do anything much of note. <strong>Chris Richards</strong> did not play for Palace.</p>
+<p>For Middlesbrough, <strong>Aiden Morris</strong> played 84 minutes and had 102 touches to lead all players. He completed 82/29 passes and won 7/8 of his ground duels while drawing three fouls in what was a busy day for the Ft. Lauderdale native. He was eventually replaced by fellow American Rokas Pukstas who played out the remainder of the game without doing anything of note. <strong>Sebastian Berhalter</strong> and <strong>Max Arfsten</strong> did not play.</p>
+<p>&nbsp;</p>
+<h4>Hilton to Grasshopper</h4>
+<p>&nbsp;</p>
+<p>After spending the last three seasons with FC Dordrecht in the second tier Eerste Divisie in Holland, American left back <strong>John Hilton</strong>, 25, will be joining Grasshopper Club Zurich in the Swiss Super League. It will be his first time playing in a top division in any country. He arrives at the club on a free transfer after his contract with Dordrecht ended in June.</p>
+<p>Grasshopper used to be one of the top clubs in Switzerland but has fallen on hard times the last two seasons, only narrowly escaping relegation the last two seasons. For the last 18 months its majority owner was MLS club Los Angeles FC but LAFC opted to sell over the summer. Grasshopper is off to a slow start yet again in 2026/27 with just one win from its first six games.</p>
+<blockquote class="twitter-tweet" data-media-max-width="560">
+<p dir="ltr" lang="de">Die letzten drei Jahre verbrachte John Hilton beim FC Dordrecht in der zweith&ouml;chsten holl&auml;ndischen Liga. Jetzt kommt der US-Amerikaner zu GC nach Z&uuml;rich. <a href="https://t.co/qLAhc9ZyhI">https://t.co/qLAhc9ZyhI</a></p>
+&mdash; Blick Sport (@Blick_Sport) <a href="https://x.com/Blick_Sport/status/2096899864323870967?ref_src=twsrc%5Etfw">September 7, 2026</a></blockquote>
+<p>
+<script src="https://platform.x.com/widgets.js" async="" charset="utf-8"></script>
+<br /><br /></p>
+<h4>Long List of struggling teams</h4>
+<p>&nbsp;</p>
+<p>Venezia dropped a heartbreaking 3-2 decision to Frosinone on Saturday. As a result, the newly promoted team has lost all three of its Serie A games to start the season. <strong>Gianluca Busio</strong> is playing well in the losing efforts and he had an assist on Venezia&rsquo;s second goal, but he has not yet been able to help achieve results.</p>
+<p><strong>Antonee Robinson</strong> lost to Crystal Palace 3-2 on Saturday in a London Derby and the Cottagers have now lost their first three games of the season. Robinson played 79 minutes in the loss and all of Fulham are struggling.</p>
+<p>The Crystal Palace win over Fulham was its first of the season and <strong>Chris Richards</strong> played 90 minutes in what has been a subpar start to the season for the normally strong central defender from Alabama.</p>
+<p><strong>Tyler Adams</strong> played 76 minutes for Bournemouth in a 2-2 draw away against Newcastle. Adams left the game with the Cherries up 2-1 but his team remains winless from its first three games.</p>
+<p>In Ligue 1, <strong>Mark McKenzie</strong> and Toulouse have just a point from three games to start the season after a 1-0 loss to Lille at home.</p>
+<p>In the Bundesliga, <strong>Joe Scally</strong> and Borussia Monchengladbach remained without a point from its first two games of the season after its 4-3 loss to Elversberg. Meanwhile, <strong>Santiago Castaneda </strong>and newly promoted Paderborn are also winless, but at least have a point from its season opening 0-0 draw at Mainz.</p>
+<p>In the Scottish Premiership, <strong>CJ Fodrey</strong> and <strong>Jacob Murrell</strong> managed a point on Saturday in a 1-1 draw with Dundee United with Murrell scoring the team&rsquo;s goal. But Falkirk has yet to win a game through five rounds in the Premiership season.</p>
+<p>Meanwhile in the 2.Bundesliga, <strong>John Tolkin</strong> and Holstein Kiel are still without a win after games following a 1-1 draw with Nurnberg over the weekend.</p>
+<p>&nbsp;</p>
+</div>
+</div>
+<div class='clear'></div>
+<script>
+  $(document).ready(function() {
+    $('#news_slides').cycle({
+      fx: 'fade',
+      timeout: 0,
+      pager: '#news_slides_nav'
+    });
+    $('#asn_players').cycle({
+      fx: 'fade',
+      timeout: 5000
+    });
+    $('div.poll a.actionlink').click(function(e) {
+      e.preventDefault();
+      $(this).parents('form').submit();
+    });
+  
+    $('#vote_poll').click(function(e) {
+      e.preventDefault();
+      var pollForm = $('#latest_poll_form');
+      if ($(pollForm).find('input[type=radio]:checked').val()) {
+        var $url = [$(pollForm).attr('action'), '?callback='].join('');
+        $.post($url, $(pollForm).serialize(), function(response) {
+          var html = response.html;
+          $('#latest_poll_choices').html(html);
+        }, 'json');
+        $('#vote_poll').hide();
+        $('#see_results').hide();
+      } else {
+        alert("You must make a choice before submitting");
+      }
+    });
+    $('#see_results').click(function(e) {
+      e.preventDefault();
+  
+      var $url = $(this).attr('href');
+      $.get($url, function(response) {
+        var html = response.html;
+        $('#latest_poll_choices').html(html);
+        $('#vote_poll').hide();
+        $('#see_results').hide();
+      }, 'json');
+    });
+  
+  });
+</script>
+</div>
+<div id='modules'>
+<div class='module fullwidth'>
+<h3>
+Post a comment
+</h3>
+<div id='disqus_thread' style='padding: 10px 0'></div>
+<script>
+  var disqus_title = "Euro Notebook: Bello & Freeman make UCL debuts, Wynalda lands coaching job, Reyna impresses, & more";
+  var disqus_developer = 0;
+  var disqus_shortname = "americansoccernow";
+  var disqus_identifier = "article_7682";
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+</div>
+</div>
+</div>
+<div id='rail'>
+<div class='module' id='more_stories'>
+<h3>
+More Stories
+</h3>
+<ul>
+<li>
+<a href='/articles/pochettino-outlines-key-points-to-start-the-2030-cycle-ynts-copa-hype-and-more'>
+Pochettino outlines key points to start the 2030 cycle: YNTs, Copa, hype, and more
+</a>
+</li>
+<li>
+<a href='/articles/morning-update-banks-nears-decision-wynder-to-revs-morris-golazo-amp-more'>
+Morning update: Banks nears decision, Wynder to Revs, Morris golazo, & more
+</a>
+</li>
+<li>
+<a href='/articles/european-notebook-balogun-deal-collapses-bombino-amp-mcglynn-move-and-much-more'>
+European notebook: Balogun deal collapses, Bombino & McGlynn move, and much more
+</a>
+</li>
+<li>
+<a href='/articles/mls-youth-report-bombino-amp-mcglynn-move-philly-youth-shine-eliis-impresses-amp-more'>
+MLS Youth Report: Bombino & McGlynn move, Philly youth shine, Eliis impresses, & More 
+</a>
+</li>
+<li>
+<a href='/articles/pierre-aiming-high-after-a-strong-summer-return-to-the-philadelphia-union'>
+Pierre aiming high after a strong summer return to the Philadelphia Union
+</a>
+</li>
+</ul>
+</div>
+<div class='module'>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
+<!-- homepage right rail -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-3838773428570314" data-ad-slot="5183267024">
+</ins>
+<script type="text/javascript">
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+<div class='module'>
+<a class="twitter-timeline" width="300" height="300" data-theme="light" href="https://twitter.com/ThisIsASN/ussoccer" data-widget-id="345192570428727296">Tweets from @ThisIsASN/ussoccer</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+</div>
+<div class='module' id='starting_xi'>
+<h3><a href="/starting_xis/new">Pick Your Starting XI</a></h3>
+<div class='formation_4321' data-link='/starting_xis/new' id='mini_field'>
+<img alt='' class='mini_player' id='gk' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_1' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_2' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_3' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_4' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_5' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_6' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_7' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_8' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_9' src='/assets/starting_player.png'>
+<img alt='' class='mini_player' id='player_10' src='/assets/starting_player.png'>
+</div>
+
+</div>
+<div class='module'>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
+<!-- homepage right rail -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-3838773428570314" data-ad-slot="5183267024">
+</ins>
+<script type="text/javascript">
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+</div>
+
+</div>
+<div id='footer'>
+<div class='burst' style='padding-top: 0px; padding-bottom: 20px;'>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-3838773428570314" data-ad-slot="2229800621">
+</ins>
+<script type="text/javascript">
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+<ul id='links'>
+<li style='position: relative;'>
+<a href='/'>
+<img alt="" id="footer_logo" src="/assets/logo-footer.gif" />
+</a>
+<span class='copyright'>
+Copyright &copy;2012-26 American Soccer Now LLC
+</span>
+</li>
+<li>
+<a href="/about">About Us</a>
+</li>
+<li>
+<a href="/contact-us">Contact</a>
+</li>
+<li style='position: relative;'>
+<span style='vertical-align: top;'>
+Follow Us:
+</span>
+<span class='smallLinks' style='width:240px'>
+<a href="/terms" style="float: left;">Terms of Use</a>
+<a href="/privacy" style="float: right;padding-right:50px">Privacy Policy</a>
+<a href="http://websurvey.burstmedia.com/surveyid1/surveysite.asp?Qhcode=ad25800a&amp;Qhcat=10617" style="float: right;margin-right:17px">Survey</a>
+</span>
+<a href="/feed" style="height:26px;" target="_blank"><img alt="Rss" src="/assets/rss.png" style="width:30px; height:auto; margin-top: -5px;" /></a>
+<a href="http://www.facebook.com/AmericanSoccerNow" style="height:26px;" target="_blank"><img alt="Facebook_64" src="/assets/facebook_64.png" style="width:30px; height:auto; margin-top: -5px;" /></a>
+<a href="http://twitter.com/classicasn" style="height:26px;" target="_blank"><img alt="Twitter_64" src="/assets/twitter_64.png" style="width:30px; height:auto; margin-top: -5px;" /></a>
+<script type='text/javascript'>
+var addthis_config = {"data_track_addressbar":false};
+</script>
+<script src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f1db98e5e671e9b' type='text/javascript'></script>
+</li>
+</ul>
+</div>
+<!-- /#burst -->
+<!-- /  %a{ :href=>"http://websurvey.burstmedia.com/surveyid1/surveysite.asp?Qhcode=ad25800a&Qhcat=10617"} -->
+<!-- /    Survey -->
+<map id='general' name='general'>
+<area alt='AmericanSoccerNow.' coords='15,17,271,49' href='/' shape='rect' title='AmericanSoccerNow.'>
+</map>
+</div>
+</body>
+</html>
