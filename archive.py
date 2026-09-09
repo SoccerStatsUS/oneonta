@@ -63,11 +63,15 @@ def add_items(rows, path=None):
 
 def load_items(path=None):
     path = path or ITEMS_PATH
-    """The archive as the build loads it: the feed row keys, dt as a datetime."""
+    """
+    The archive as the build loads it: the feed row keys, dt as a datetime, and
+    text, the archived story as one string, or '' when the page was never fetched.
+    """
     rows = []
     for item in read_items(path):
         row = {k: item[k] for k in ROW_KEYS}
         row['dt'] = datetime.datetime.fromisoformat(item['dt'])
+        row['text'] = '\n\n'.join(read_text(item)) if has_text(item) else ''
         rows.append(row)
     return rows
 

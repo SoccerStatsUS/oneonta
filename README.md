@@ -76,8 +76,10 @@ The feeds are one leaf of the soccer pipeline:
 
 The build calls `load_items()` from `load_news()` (`build/make/load.py`), which loads
 the items into mongo through `generic_load`. s2's own `load_news()`
-(`s2/build/load.py`) reads that collection and creates a `FeedItem` per row. Only
-the feed fields reach the database; the article text stays in the archive.
+(`s2/build/load.py`) reads that collection and creates a `FeedItem` per row, matching
+the title, summary and text against the people on record to link each story to the
+bios it names. Only the feed fields reach the database; the article text stays in
+the archive.
 
 Two couplings are worth knowing before editing the feed list:
 

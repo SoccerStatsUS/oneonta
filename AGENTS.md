@@ -30,11 +30,12 @@ here; use the build's:
 
 ## Output contract
 
-`archive.load_items()` returns dicts consumed directly as `FeedItem(**row)` fields, so
-the keys are fixed: `title`, `summary`, `url`, `dt`, `source`. Changing them means
-changing `s2/build/load.py` and `s2/build/update.py` with it. Feed rows may also
-carry `text`, a list of paragraphs, which the archive files away and drops from the
-index; the database keeps the summary only.
+`archive.load_items()` returns dicts whose keys are fixed: `title`, `summary`, `url`,
+`dt`, `source` become `FeedItem` fields, and `text` is the archived story, or `''`,
+which `s2/build/load.py` and `s2/build/update.py` pop and match against the record
+for names before saving; the database keeps the summary only. Changing the keys
+means changing those two loaders with it. Feed rows may also carry `text`, a list of
+paragraphs, which the archive files away and drops from the index.
 
 The build never touches the network. Only `fetch.py` does, and `data/` is committed,
 so a build on a fresh clone has the whole history.

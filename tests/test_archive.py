@@ -14,7 +14,8 @@ def test_add_and_load(tmp_path):
 
     rows = archive.load_items(path)
     assert [r['title'] for r in rows] == ['B', 'A']
-    assert set(rows[0]) == set(archive.ROW_KEYS)
+    assert set(rows[0]) == set(archive.ROW_KEYS) | {'text'}
+    assert rows[0]['text'] == ''
     assert rows[1]['dt'] == ROW['dt']
     assert archive.read_items(path)[0]['seen'] == datetime.date.today().isoformat()
 
@@ -34,6 +35,17 @@ def test_text_round_trip(tmp_path, monkeypatch):
     archive.write_text(ROW2, [])
     assert archive.has_text(ROW2)
     assert archive.read_text(ROW2) == []
+
+
+def test_load_carries_the_text(tmp_path, monkeypatch):
+    monkeypatch.setattr(archive, 'TEXT_DIR', str(tmp_path))
+    path = tmp_path / 'items.jsonl'
+    archive.add_items([ROW, ROW2], path)
+    archive.write_text(ROW, ['one', 'two'])
+
+    rows = {r['title']: r for r in archive.load_items(path)}
+    assert rows['A']['text'] == 'one\n\ntwo'
+    assert rows['B']['text'] == ''
 
 
 def test_slug():
