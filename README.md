@@ -6,16 +6,23 @@ items for the build to load.
 ## feeds.py
 
 - `feeds` — the feed list, `(source name, feed url)` pairs
-- `parse_feed(url, source)` — one feed, parsed into dicts sorted by date
+- `parse_document(doc, source)` — a feed document (bytes or str), parsed into dicts
+  sorted by date; this is what the tests exercise
+- `parse_feed(url, source)` — fetch one feed and parse it; warns and returns `[]`
+  on any fetch or parse failure
 - `parse_feeds()` — every feed in the list, concatenated
 
 Each item is `{title, summary, url, dt, source}`. `dt` is a naive local datetime;
 `source` is the display name from the feed list, not the url.
 
-Run it on its own to print what the feeds currently return:
+Run it on its own to print the newest items and the total count:
 
     cd ~/soccer
     build/.venv/bin/python -m oneonta.feeds
+
+Tests parse saved copies of the feeds under `tests/fixtures`, so they need no network:
+
+    build/.venv/bin/python -m pytest oneonta/tests
 
 Depends on `feedparser`.
 
@@ -38,7 +45,7 @@ Two couplings are worth knowing before editing the feed list:
 
 ## Current state
 
-`load_news()` is commented out in the build, and most of the feed list has gone dead
-since it was written — the MLS network dropped RSS entirely, and several other feeds
-now answer their old urls with HTML. See [ROADMAP.md](ROADMAP.md) for what is still
-live and what needs doing.
+Two feeds: ESPN soccer, which exposes only the last day or so of items, and American
+Soccer Now, which publishes its entire archive back to 2012 (about 6,500 items, a
+6MB fetch) and is loaded in full. `load_news()` is still commented out in the build.
+See [ROADMAP.md](ROADMAP.md) for what needs doing.

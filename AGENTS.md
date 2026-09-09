@@ -12,10 +12,10 @@ with `~/soccer` on the path. There is no venv here; use the build's:
 
 ## Changing the feed list
 
-- Verify a url before adding it. A live feed and a 200 are not the same thing: several
-  entries in the list return the site's HTML from the old feed path, and one returns
-  valid RSS with no items at all. Check the content type, then check that the newest
-  item is recent.
+- Verify a url before adding it. A live feed and a 200 are not the same thing: dead
+  feeds have answered their old path with the site's HTML, with valid RSS holding no
+  items, and with twenty items spread across three years. Check the content type,
+  then check that the newest item is recent and that there are enough of them.
 - Keep the display name matched to an entry in `metadata/data/sources`. An unmatched
   name doesn't fail, it quietly creates a second `Source` in s2.
 - Feeds are fetched over the network in the middle of an otherwise offline build, so
@@ -38,4 +38,4 @@ keys are fixed: `title`, `summary`, `url`, `dt`, `source`. Changing them means c
 
 The sibling `scrapers` repo states the house request policy; the same spirit applies
 here even though this is only a handful of feeds. Don't poll in a loop while testing —
-save a response to a file and work against that.
+save a response to a file and work against that. `tests/fixtures` has one per feed.
