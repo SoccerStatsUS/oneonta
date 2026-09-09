@@ -4,7 +4,7 @@ Open work only; completed items are removed as they land (see git history).
 
 This package feeds `load_news()` in the build repo (`build/make/load.py`), which
 loads `parse_feeds()` into `soccer_db.news`; s2 then builds `news.FeedItem` from
-that collection. `load_news()` is currently commented out at `build/make/load.py:233`.
+that collection.
 
 ---
 
@@ -14,15 +14,6 @@ that collection. `load_news()` is currently commented out at `build/make/load.py
   the MLS network and the federations no longer publish RSS. Candidates need checking
   the way AGENTS.md describes — the NYT soccer feed, for instance, still parses but
   holds twenty items spread across three years.
-- [ ] Add "American Soccer Now" to `metadata/data/sources`. Until then every build
-  creates it as a new `Source` in s2.
-
-## Build Integration
-
-- [ ] Enable `load_news()` at `build/make/load.py:233` and replace the stale comment
-  above it ("the oneonta package it imports is not installed").
-- [ ] Declare the `feedparser` dependency in the build's `requirements3.txt`. It is
-  installed in the build's `.venv` but listed nowhere.
 
 ## News History
 

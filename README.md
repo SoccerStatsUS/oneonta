@@ -47,5 +47,5 @@ Two couplings are worth knowing before editing the feed list:
 
 Two feeds: ESPN soccer, which exposes only the last day or so of items, and American
 Soccer Now, which publishes its entire archive back to 2012 (about 6,500 items, a
-6MB fetch) and is loaded in full. `load_news()` is still commented out in the build.
+6MB fetch) and is loaded in full. The build loads both and s2 serves them at `/news/`.
 See [ROADMAP.md](ROADMAP.md) for what needs doing.
