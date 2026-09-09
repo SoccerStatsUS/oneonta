@@ -56,16 +56,27 @@ def fetch_text(item):
 
 
 def update_items():
-    added = archive.add_items(feeds.parse_feeds())
-    print(f'{added} new items from the feeds')
+    rows = feeds.parse_feeds()
+    added = archive.add_items(rows)
+    from_feed = 0
+    for row in rows:
+        # Only where the page is not going to be fetched: a site with an
+        # extractor gets the whole article, while its feed may carry a teaser.
+        if row.get('text') and not articles.body_for(row['url']) and not archive.has_text(row):
+            archive.write_text(row, row['text'])
+            from_feed += 1
+    print(f'{added} new items from the feeds, {from_feed} texts taken from the feeds')
     return added
 
 
 def fetch_missing(limit=None):
-    items = [e for e in reversed(archive.read_items()) if not archive.has_text(e)]
+    missing = [e for e in reversed(archive.read_items()) if not archive.has_text(e)]
+    items = [e for e in missing if articles.body_for(e['url'])]
+    skipped = len(missing) - len(items)
     if limit is not None:
         items = items[:limit]
-    print(f'{len(items)} items without text')
+    print(f'{len(missing)} items without text, {skipped} on sites with no extractor, '
+          f'fetching {len(items)}')
 
     empty = failed = 0
     for i, item in enumerate(items):

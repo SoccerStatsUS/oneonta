@@ -1,0 +1,65 @@
+Lionel Messi, Cristiano Ronaldo, and all the guys who came next -- Arjen Robben, Gareth Bale, Neymar, Mohamed Salah -- transformed our understanding of what a winger was supposed to do.
+
+It used to be: get chalk on your heels, stay wide, wait for a pass, dribble past your fullback, and cross the ball into the big striker in the box. And then you'd do it over and over and over again.
+
+The problem, though, is that even the best crossers are incredibly inefficient. Depending on where you look and when, crosses get turned into goals somewhere between 1% and 3% of the time.
+
+So many dominant games from wingers ended up being exercises in frustration -- his team would feed him the ball, he'd keep beating his man, and then the cross would inevitably lead to nothing. If only his teammates could get on his level! Most of the dominance disappeared as soon as the ball left the winger's foot.
+
+What Ronaldo and Messi did -- and made everyone else realize -- is that you could take those same winger skills, the speed and technical brilliance, and turn it into something even better. The average shot is converted about 10% of the time, so every time a winger gets the ball and turns it into a shot instead of a cross, that player is, on average, increasing your probability of scoring a goal by 233% to 900%.
+
+For all of the emphasis on pressing and possessing, this shift was the defining feature of the 21st century version of the sport. These types of wingers had never really existed before, but now they were more important than anyone else.
+
+Or, at least they were. With the departure of Salah from England and Messi and Ronaldo from the international stage, perhaps it's fitting. Premier League teams seem like they've forgotten what their wingers are supposed to do.
+
+The state of winger play in 2026 is best summed up by Manchester City's move for Iliman Ndiaye.
+
+The 26-year-old, French-born, Senegalese international is one of the best dribblers in the Premier League, if not the world. His now-City-teammate Jérémy Doku exists in his own ball-carrying world, but Ndiaye ranked second behind him in completed take-ons last season with 72, per the stats app Futi. And the season before wasn't too different: His 75 take-ons ranked fourth behind Doku, West Ham's Mohammed Kudus, and Liverpool's Salah.
+
+If you watch the highlights package that NBC Sports put together after Ndiaye's move to City, you will be convinced that you are watching one of the best players in the world. Explosive athleticism, beguiling footwork, cannon-powered finishing, and lots of dribbling leading directly to goals.
+
+The problem, though, is that the 17-minute video contains almost every goal that Ndiaye has scored in the Premier League over the past two seasons. Excluding penalties, he has found the back of the net 11 times for Everton over that stretch. Include his three assists and that adds up to 0.25 non-penalty goals+assists per 90 minutes with the Toffees.
+
+In the Premier League last season, 96 qualifying players put up better per-minute attacking numbers. Man City paid €70 million to acquire Ndiaye.
+
+He isn't the only expensive winger who dribbles past defenders for fun, blows up YouTube, and fails to turn it into goals, though.
+
+Among players classified by Transfermarkt as wingers, Premier League clubs have spent at least €40 million in transfer fees on 23 different players over the past three seasons. Here's the list, ordered by the size of the fee:
+
+When scouting a player, there's a lot of noise behind the conversion of shots into goals and passes into goals. Expected goals and assists does a much better job of showing just how dangerous a player was around the goal since they take into account every shot and every pass a player makes.
+
+For non-penalty xG+xA, a rate of 0.5 per 90 minutes is a decent rule of thumb for above-average production. At the very least, when you're a Premier League team and you see a winger breaking that threshold, you should give the player a deeper look.
+
+If we ignore the four wingers who moved from outside of Europe's Big Five top leagues, then we're left with 19 players. And among those, just five hit the 0.5 benchmark in the season before they moved: Barcola, Outtara, Madueke, Mbaye, and Johnson.
+
+That might even oversell it, too. Although Johnson is a winger, technically, he's more of a wide center forward, meaning he just makes runs to the back post. He's the only player on the list who didn't complete at least one take-on per 90 minutes. And then Mbaye played only 900 mostly sub minutes for the best team in the world.
+
+Among the actual wingers who got consistent playing time, we're left with three -- out of 19 -- who were able to dribble past their defender and turn it into above-average production. And it's not even clear that the production -- you know, the part where you turn your play into goals -- drove any kind of premium. It did for Barcola, who leads all players with 0.8 xG+xA, but then Madueke's fee ranks 10th and Outtara's 17th.
+
+In fact, among the seven players who went for over €60 million, four of them (Sávio, Ndiaye, Kudus, and Elanga) didn't even get to 0.4 xG+xA. Among players with at least 900 minutes of game time, 53 different Premier League players got there last year.
+
+This has gone on for long enough that it's not just some random quirk. Enough teams have spent lots of money on these highlight-reel-but-no-end-product wingers over the past three seasons that it has to mean something.
+
+Yes, I realize I sound like your grandpa right now, but it previously did seem like teams had begun to realize that dribbling skill isn't worth much on its own. It had to be connected to scoring because, well, that's the whole point of the game. As they battled for titles each year under Jurgen Klopp and Pep Guardiola, Liverpool and Manchester City's rosters were filled with wide players who created lots of goals and won lots of games.
+
+So, what changed? I think it's a combination of three things.
+
+The first: a shift in tactics. At the top of the table, most clubs moved toward a style that prioritized control and limited risks. See: Arsenal's ever-growing collection of converted center backs, or coach Enzo Maresca starting Marc Guéhi as a central midfielder in his first two games at Manchester City. Rather than attacking quickly and potentially turning the ball over with a defensive structure that looks something like this ...
+
+... the top teams began to keep more bodies back as they attacked, and they also tended to move the ball up-field more methodically. When you do that, you don't have as many players pushed forward to disorganize the opposition defense and you're not pushing forward fast enough to prevent the defense from getting disorganized.
+
+So, what's the solution -- beyond set pieces? Get the ball out wide to your dribbling winger and let him try to break the defense apart by himself. Only 17 players completed at least 1.75 take-ons per 90 in the Premier League last season. From our list of 19, a full 14 hit that mark in their last season before moving clubs.
+
+Worst case, your winger loses the ball but you already have all that cover behind him. Plus, a turnover toward the sideline is way easier to deal with than one in the middle. Just take a look at the whole sequence from the screenshot above to understand why a lot of managers don't want turnovers and risks taken in the middle:
+
+That's all connected with the second cause. As I wrote about with Tottenham earlier this year, there's a growing obsession with physical traits. We now have all kinds of metrics that measure how much a player runs off the ball, what kinds of runs he makes, how fast he can run, how quickly he can decelerate, etc.
+
+As multiple sources within Europe have told me, these new numbers have gained purchase among front offices across the continent. Clubs have been much quicker to act on this data than they ever were with any of the numbers and models that attempt to connect themselves to scoring and preventing goals.
+
+But all of these numbers aren't dissimilar from the dribbling numbers. They tell us what a player does -- they don't tell us how effective what he's doing actually is. And on top of that, there's some correlation between the explosive physical metrics and the abilities required to dribble past an opponent: speed, acceleration, agility. The biases reinforce each other.
+
+And all of that adds up to the final cause. The fatal flaw for most professional sports teams over, well, most of the history of professional sports is an obsession with potential. Scouts and coaches love to imagine what a player might do in the future, how they might be able to become something new once they teach them a few things.
+
+And the mazy dribbler is soccer's version of the wide receiver who runs a 4.3 40-yard dash or the 7-foot center who can move like he's 6-foot-4. It doesn't matter if these players don't score goals, rarely catch passes, or can't shoot straight. What matters is what might happen if, one day, they do.
+
+For as much as the Premier League has been modernized, hierarchical decision-making structures have been built, data has washed over the game, and the two greatest soccer players of the 21st century proved otherwise: clubs just can't quit it. If you can dribble past your defender, someone is going to give you and your old club lots of money -- whether it's the best move or not.

@@ -6,6 +6,8 @@ from html.parser import HTMLParser
 
 import feedparser
 
+from oneonta import articles
+
 MAX_LEN = 1023
 TIMEOUT = 60
 
@@ -13,6 +15,12 @@ feeds = [
     ('ESPN.com', 'https://www.espn.com/espn/rss/soccer/news'),
     # Refuses https; carries its whole archive back to 2012 (~6MB per fetch).
     ('American Soccer Now', 'http://americansoccernow.com/feed'),
+    ('Soccer America', 'https://www.socceramerica.com/feed/'),
+    # These three carry the article text in the feed.
+    ('The Equalizer', 'https://equalizersoccer.com/feed/'),
+    ('Society for American Soccer History', 'https://www.ussoccerhistory.org/feed/'),
+    ('Backheeled', 'https://www.backheeled.com/rss/'),
+    ('The Guardian', 'https://www.theguardian.com/football/mls/rss'),
 ]
 
 
@@ -44,14 +52,19 @@ def parse_document(doc, source):
         if not published:
             continue
 
-        l.append({
+        row = {
             'title': e.get('title', '')[:MAX_LEN],
             'summary': strip_html(e.get('summary', ''))[:MAX_LEN],
             'url': e.get('link', '')[:MAX_LEN],
             # published_parsed is UTC; s2 runs USE_TZ=False and wants naive local.
             'dt': datetime.datetime.fromtimestamp(calendar.timegm(published)),  # noqa: DTZ006
             'source': source,
-        })
+        }
+        # Some feeds carry the whole article. The archive keeps it; the
+        # database never sees it.
+        if e.get('content'):
+            row['text'] = articles.paragraphs(e.content[0].value)
+        l.append(row)
 
     return sorted(l, key=lambda e: e['dt'])
 

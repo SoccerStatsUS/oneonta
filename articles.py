@@ -6,19 +6,34 @@ import urllib.parse
 from html.parser import HTMLParser
 
 # host -> (tag, attribute, value) of the element that wraps the article text.
+# A class value matches one class among several.
 BODIES = {
     'www.espn.com': ('div', 'class', 'article-body'),
     'americansoccernow.com': ('div', 'id', 'article'),
+    'www.theguardian.com': ('div', 'data-gu-name', 'body'),
+    # Soccer America's pages are paywalled to a teaser paragraph; feed only.
 }
 
 
+def matches(attrs, attr, value):
+    found = dict(attrs).get(attr)
+    if found is None:
+        return False
+    if attr == 'class':
+        return value in found.split()
+    return found == value
+
+
 class _Paragraphs(HTMLParser):
-    """Collect the text of every <p> inside the first element matching root."""
+    """
+    Collect the text of every <p> inside the first element matching root,
+    or everywhere if root is None.
+    """
 
     def __init__(self, root):
         super().__init__()
         self.root = root
-        self.depth = 0
+        self.depth = 0 if root else 1
         self.done = False
         self.in_p = False
         self.current = []
@@ -29,7 +44,7 @@ class _Paragraphs(HTMLParser):
             return
         if not self.depth:
             root_tag, attr, value = self.root
-            if tag == root_tag and dict(attrs).get(attr) == value:
+            if tag == root_tag and matches(attrs, attr, value):
                 self.depth = 1
             return
         self.depth += 1
@@ -58,12 +73,16 @@ def body_for(url):
     return BODIES.get(urllib.parse.urlsplit(url).hostname)
 
 
+def paragraphs(html, root=None):
+    p = _Paragraphs(root)
+    p.feed(html)
+    p.close()
+    return p.paragraphs
+
+
 def extract(url, html):
     """The article's paragraphs, or [] if the site is unknown or the page has none."""
     root = body_for(url)
     if not root:
         return []
-    p = _Paragraphs(root)
-    p.feed(html)
-    p.close()
-    return p.paragraphs
+    return paragraphs(html, root)

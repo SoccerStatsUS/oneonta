@@ -81,3 +81,27 @@ def test_fetch_missing_skips_archived(quiet, monkeypatch, capsys):
     fetch.fetch_missing()
     assert calls == [other]
     assert 'fetched 1, 0 with no text, 0 failed' in capsys.readouterr().out
+
+
+def test_update_items_takes_text_from_the_feed(quiet, monkeypatch, capsys):
+    import datetime
+    sash = dict(item('https://www.ussoccerhistory.org/a/'), dt=datetime.datetime(2026, 9, 9, 12), text=['from', 'feed'])
+    # a site with an extractor gets its page fetched; the feed's content is a teaser
+    espn = dict(item(ESPN), dt=datetime.datetime(2026, 9, 9, 13), text=['teaser'])
+    monkeypatch.setattr(fetch.feeds, 'parse_feeds', lambda: [sash, espn])
+    assert fetch.update_items() == 2
+    assert archive.read_text(sash) == ['from', 'feed']
+    assert not archive.has_text(espn)
+    assert '2 new items from the feeds, 1 texts taken from the feeds' in capsys.readouterr().out
+    assert fetch.update_items() == 0
+
+
+def test_fetch_missing_skips_sites_without_an_extractor(quiet, monkeypatch, capsys):
+    sa = 'https://www.socceramerica.com/story/'
+    with open(archive.ITEMS_PATH, 'w') as f:
+        f.write('{"title":"t","summary":"s","url":"%s","source":"Soccer America","dt":"2026-09-09 12:00:00"}\n' % sa)
+    calls = []
+    monkeypatch.setattr(urllib.request, 'urlopen', fake_urlopen([], calls))
+    fetch.fetch_missing()
+    assert calls == []
+    assert '1 items without text, 1 on sites with no extractor, fetching 0' in capsys.readouterr().out

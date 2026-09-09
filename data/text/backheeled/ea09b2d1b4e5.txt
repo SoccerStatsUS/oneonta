@@ -1,0 +1,29 @@
+MLS is doing it again. Reshuffling its playoff system, that is.
+
+Last month, The Guardian reported that, as MLS shifts its calendar next year, the league plans to move on from the play-in games and best-of-three first round that’s defined the Apple TV playoff landscape.
+
+The Apple TV deal called for more playoff inventory than the 15 postseason games used under the old single-elimination system, and the best-of-three format and play-in rounds provided just that. Unfortunately, the current setup sees the playoffs drag on and punishes teams who perform better with longer wait times after the best-of-three round. Additionally, the best-of-three format hasn’t been as engaging as some initially hoped, with fans growing bored of seeing the same opponent rather than building rivalries.
+
+There’s been one more complaint about the current system: that it’s needlessly complex compared to the original single-elimination playoff. Well, the new reported model set to debut next year pushes the complexity further, in a way that is best explained by a chart:
+
+Got it? Not quite? Alright, here’s another way to think about it:
+
+Each round will be re-seeded, too. That means teams won’t know the specifics of their path heading into the playoffs.
+
+Although MLS hasn’t stated specific goals in changing the playoff system – this format hasn’t been officially announced by the league yet! – we can reasonably assume what priorities the league is emphasizing with the change. We can also evaluate, mathematically, if the new system achieves its goals. By taking the actual strength differences between teams, measured by an Elo model (in this case, a model I made myself) we can simulate different potential regular season and playoff setups thousands of times and get a sense for what might happen with a couple simple assumptions. First, that the gap between MLS teams at the end of 2025 is going to stay roughly consistent in the future. Second, that the actual table rankings are going to reflect that quality difference.
+
+So, what’s the point of this new playoff format? And will it be any good? Let’s dive in.
+
+MLS clearly believes that home playoff games are a driving force for the league. They bring in new fans by creating an intense environment that showcases the best of what MLS has to offer: the gameday experience. That’s where MLS is closest to world class, and the revenue from these home postseason matches is greater than the regular season counterparts.
+
+The best-of-three model was specifically designed to get more teams playoff games, and it did: 16 teams currently get at least one home postseason clash. The proposed model is slightly less favorable in that regard: seeds 1-4 and 9-16 are guaranteed to host a playoff game, but there’s a roughly 25% chance (if re-seeding is solely on regular season performance) that seeds 5-8 will not host. Seeds 17, 18, and 19 also have extremely low chances of hosting.
+
+Regardless, the new format still offers more teams the chance to host than the original single-elimination system.
+
+One thing MLS wants to avoid is having teams eliminated prior to the end of the season. This is a real problem with the single table format that most of the world uses, especially when there’s no danger of relegation or the added bonus of European competitions like UEFA’s Europa League, of which there’s no Concacaf equivalent.
+
+Expanding the playoffs to 20 teams helps MLS keep the vast majority of its teams in the competition to win a title just that much longer. That means the regular season stays relevant longer as well; if we were to put all 30 MLS teams into a simple 58-game season (everybody plays everybody, home and away), most teams would no longer have a shot at the title well before the end of the year. The vast majority of games, therefore, would have little-to-no leverage in terms of the final result.
+
+Although a 58-game season would be excessive, we can – and I did! – still simulate it to see what might happen. Even with MLS’s level of parity, which is much higher than the typical European league, two-thirds of the league would still be eliminated with about eight games remaining. MLS’s old 16-team playoff system meant that teams stayed alive longer than a theoretical single-table format, but it still doesn’t compare to the 20 teams brought in by the new system.
+
+Does this sound a bit counter-intuitive? MLS wants to make the regular season matter more by…lowering the bar for playoff entry? Outside of the new format’s complexity, this topic has been at the center of most of the criticism. By adding an additional four teams to the playoffs, how could it make the regular season matter more?

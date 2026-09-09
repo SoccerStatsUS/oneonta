@@ -10,10 +10,13 @@ from that collection.
 
 ## Feed List
 
-- [ ] Find more US-soccer coverage. The list is ESPN soccer plus American Soccer Now;
-  the MLS network and the federations no longer publish RSS. Candidates need checking
-  the way AGENTS.md describes — the NYT soccer feed, for instance, still parses but
-  holds twenty items spread across three years.
+- [ ] The MLS network and the federations no longer publish RSS, so nothing here
+  speaks for the league or U.S. Soccer directly. Candidates need checking the way
+  AGENTS.md describes — checked and rejected on 2026-09-09: the NYT soccer feed
+  (twenty items across three years), US Soccer Players (quiet since July), Pro Soccer
+  Wire, Sports Illustrated, NBC and the Guardian's USA tag (all answer with HTML).
+- [ ] Soccer America's article pages are paywalled, so its items carry the feed
+  summary only. Revisit if a subscription or a full-text feed turns up.
 
 ## Archive
 

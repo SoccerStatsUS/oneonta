@@ -40,6 +40,23 @@ def test_asn_atom():
     assert '<' not in rows[0]['summary']
 
 
+def test_text_from_feed_content():
+    rows = feeds.parse_document((FIXTURES / 'sash.xml').read_bytes(), 'Society for American Soccer History')
+    assert len(rows) == 2
+    assert all(len(r['text']) >= 5 for r in rows)
+    assert rows[-1]['text'][0].startswith('I’m a retired newspaperman')
+    assert rows[-1]['summary'].startswith('The “Milt Miller Collection”')
+    for name in ('equalizer', 'backheeled'):
+        rows = feeds.parse_document((FIXTURES / f'{name}.xml').read_bytes(), name)
+        assert all(r['text'] for r in rows), name
+
+
+def test_no_text_key_without_content():
+    for name in ('socceramerica', 'guardian-mls', 'espn'):
+        rows = feeds.parse_document((FIXTURES / f'{name}.xml').read_bytes(), name)
+        assert rows and not any('text' in r for r in rows), name
+
+
 def test_strip_html():
     assert feeds.strip_html('<p>a <b>b</b>\n c</p>') == 'a b c'
     assert feeds.strip_html('plain &amp; simple') == 'plain & simple'

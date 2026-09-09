@@ -30,6 +30,13 @@ it every time, so nothing is lost when the database is rebuilt.
 
 - `BODIES` — which element holds the story on each site, by host
 - `extract(url, html)` — the paragraphs inside it, or `[]` for an unknown site
+- `paragraphs(html)` — the paragraphs of a fragment, used for feeds that carry the
+  article in the entry itself
+
+A feed that carries the article text (The Equalizer, the Society for American
+Soccer History, Backheeled) never needs a page fetch. A site with no `BODIES` entry
+is never fetched at all; its items keep the feed summary only. Soccer America is
+one, since its pages are paywalled to a teaser paragraph.
 
 ## feeds.py
 
@@ -76,7 +83,8 @@ Two couplings are worth knowing before editing the feed list:
 
 ## Current state
 
-Two feeds: ESPN soccer, which exposes only the last day or so of items, and American
-Soccer Now, which publishes its entire archive back to 2012 (about 6,500 items, a
-6MB fetch). Both are in the archive and s2 serves them at `/news/`. See
-[ROADMAP.md](ROADMAP.md) for what needs doing.
+Seven feeds. ESPN soccer and Soccer America for the daily volume, American Soccer
+Now (which publishes its whole archive back to 2012, about 6,500 items, a 6MB fetch),
+The Equalizer for the women's game, the Society for American Soccer History,
+Backheeled for the lower leagues, and the Guardian's MLS tag. The archive holds them
+all and s2 serves them at `/news/`. See [ROADMAP.md](ROADMAP.md) for what needs doing.
