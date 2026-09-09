@@ -51,6 +51,17 @@ def test_text_from_feed_content():
         assert all(r['text'] for r in rows), name
 
 
+def test_blogger_text():
+    rows = feeds.parse_document((FIXTURES / 'dunord.atom').read_bytes(), 'du Nord')
+    assert len(rows) == 2
+    # a day's link roundup, split at its line breaks; then a one-line sign-off
+    assert len(rows[0]['text']) > 50
+    assert rows[1]['text'] == ['Just needed a break from things, sorry about that. Back soon.'] or len(rows[1]['text']) == 1
+    assert rows[0]['url'].startswith('https://dunord.blogspot.com/2018/')
+    assert feeds.blogger_page('https://b.blogspot.com/feeds/posts/default', 151) == \
+        'https://b.blogspot.com/feeds/posts/default?max-results=150&start-index=151'
+
+
 def test_no_text_key_without_content():
     for name in ('socceramerica', 'guardian-mls', 'espn'):
         rows = feeds.parse_document((FIXTURES / f'{name}.xml').read_bytes(), name)

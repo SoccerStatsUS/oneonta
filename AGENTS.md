@@ -25,6 +25,8 @@ here; use the build's:
 - A new site needs an entry in `articles.BODIES` and a saved page in `tests/fixtures`,
   unless its feed carries the article text (`content`), in which case the archive takes
   it from there. A site with neither is never fetched and keeps the feed summary only.
+- A Blogger blog's whole history is one `--backfill` run away. WordPress pages its
+  feed too (`/feed/?paged=N`) but nothing here walks that yet.
 
 ## Output contract
 

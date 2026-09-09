@@ -39,6 +39,13 @@ def test_paragraphs_of_a_fragment():
     assert articles.paragraphs('<p>a</p><div><p>b &amp; c</p></div><p></p>') == ['a', 'b & c']
 
 
+def test_paragraphs_fall_back_to_line_breaks():
+    html = 'one<br /> <br />two <a href="x">link</a>.<br /><ul><li>three</li></ul><div class="f"><!-- ad --></div>'
+    assert articles.paragraphs(html) == ['one', 'two link.', 'three']
+    # a page extractor never falls back: no <p> in the body means no article
+    assert articles.paragraphs('<div id="a">one<br>two</div>', ('div', 'id', 'a')) == []
+
+
 def test_soccer_america_has_no_extractor():
     assert articles.body_for('https://www.socceramerica.com/story/') is None
 

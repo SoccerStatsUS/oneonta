@@ -73,11 +73,38 @@ def body_for(url):
     return BODIES.get(urllib.parse.urlsplit(url).hostname)
 
 
+class _Blocks(HTMLParser):
+    """Text split at line breaks and block elements, for markup with no <p>."""
+
+    BREAKS = {'br', 'div', 'li', 'ul', 'ol', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'tr'}
+
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.BREAKS:
+            self.parts.append('\n')
+
+    def handle_endtag(self, tag):
+        if tag in self.BREAKS:
+            self.parts.append('\n')
+
+    def handle_data(self, data):
+        self.parts.append(data)
+
+
 def paragraphs(html, root=None):
     p = _Paragraphs(root)
     p.feed(html)
     p.close()
-    return p.paragraphs
+    if p.paragraphs or root:
+        return p.paragraphs
+    # Blogger-era markup: <br> and lists, no <p>.
+    b = _Blocks()
+    b.feed(html)
+    b.close()
+    return [t for t in (' '.join(line.split()) for line in ''.join(b.parts).split('\n')) if t]
 
 
 def extract(url, html):

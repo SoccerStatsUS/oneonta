@@ -12,6 +12,10 @@ yet, five seconds apart. Stop it whenever; the next run carries on.
     cd ~/soccer
     build/.venv/bin/python -m oneonta.fetch [--limit N] [--no-feeds]
 
+`--backfill SOURCE` walks a Blogger feed back to its first post instead of reading
+the feeds; that is how du Nord and A Moment of Brilliance, both long finished, got
+their whole runs into the archive.
+
 Commit `data/` afterwards. The archive is the news history: the build reloads all of
 it every time, so nothing is lost when the database is rebuilt.
 
@@ -31,7 +35,8 @@ it every time, so nothing is lost when the database is rebuilt.
 - `BODIES` — which element holds the story on each site, by host
 - `extract(url, html)` — the paragraphs inside it, or `[]` for an unknown site
 - `paragraphs(html)` — the paragraphs of a fragment, used for feeds that carry the
-  article in the entry itself
+  article in the entry itself; markup with no `<p>` (Blogger) is split at line
+  breaks and list items instead
 
 A feed that carries the article text (The Equalizer, the Society for American
 Soccer History, Backheeled) never needs a page fetch. A site with no `BODIES` entry
@@ -83,8 +88,10 @@ Two couplings are worth knowing before editing the feed list:
 
 ## Current state
 
-Seven feeds. ESPN soccer and Soccer America for the daily volume, American Soccer
+Nine feeds. ESPN soccer and Soccer America for the daily volume, American Soccer
 Now (which publishes its whole archive back to 2012, about 6,500 items, a 6MB fetch),
 The Equalizer for the women's game, the Society for American Soccer History,
-Backheeled for the lower leagues, and the Guardian's MLS tag. The archive holds them
-all and s2 serves them at `/news/`. See [ROADMAP.md](ROADMAP.md) for what needs doing.
+Backheeled for the lower leagues, the Guardian's MLS tag, and two finished Blogger
+blogs whose full runs are archived: du Nord, the daily American soccer link roundup
+from 2005 to 2018, and A Moment of Brilliance. The archive holds them all and s2
+serves them at `/news/`. See [ROADMAP.md](ROADMAP.md) for what needs doing.

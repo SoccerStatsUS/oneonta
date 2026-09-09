@@ -4,9 +4,11 @@ every archived item that has no text yet.
 
     cd ~/soccer
     build/.venv/bin/python -m oneonta.fetch [--limit N] [--no-feeds]
+    build/.venv/bin/python -m oneonta.fetch --backfill SOURCE [--limit N]
 
 Resumable: stop it whenever, and the next run carries on from the items still
-missing text. Request policy is the scrapers repo's: five seconds between
+missing text. --backfill walks a Blogger feed's whole history instead of
+reading the feeds. Request policy is the scrapers repo's: five seconds between
 requests, one minute then five before giving up on a transient failure, and
 no retry on a 4xx other than 408 and 429.
 """
@@ -55,8 +57,7 @@ def fetch_text(item):
     return len(paragraphs)
 
 
-def update_items():
-    rows = feeds.parse_feeds()
+def archive_rows(rows):
     added = archive.add_items(rows)
     from_feed = 0
     for row in rows:
@@ -67,6 +68,25 @@ def update_items():
             from_feed += 1
     print(f'{added} new items from the feeds, {from_feed} texts taken from the feeds')
     return added
+
+
+def update_items():
+    return archive_rows(feeds.parse_feeds())
+
+
+def backfill(source):
+    """Walk a Blogger feed back to its first post."""
+    url = dict(feeds.feeds)[source]
+    rows, start = [], 1
+    while True:
+        page = feeds.parse_feed(feeds.blogger_page(url, start), source)
+        if not page:
+            break
+        rows.extend(page)
+        start += feeds.BLOGGER_PAGE
+        time.sleep(REQUEST_DELAY)
+    print(f'{len(rows)} items in the history of {source}')
+    return archive_rows(rows)
 
 
 def fetch_missing(limit=None):
@@ -101,9 +121,13 @@ def main(argv=None):
     parser.add_argument('--limit', type=int, help='fetch at most this many pages')
     parser.add_argument('--no-feeds', action='store_true',
                         help='skip the feeds; only fetch text for archived items')
+    parser.add_argument('--backfill', metavar='SOURCE',
+                        help="walk this Blogger feed's whole history instead of the feeds")
     args = parser.parse_args(argv)
 
-    if not args.no_feeds:
+    if args.backfill:
+        backfill(args.backfill)
+    elif not args.no_feeds:
         update_items()
     fetch_missing(args.limit)
 

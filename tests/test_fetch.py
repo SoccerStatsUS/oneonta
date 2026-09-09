@@ -105,3 +105,28 @@ def test_fetch_missing_skips_sites_without_an_extractor(quiet, monkeypatch, caps
     fetch.fetch_missing()
     assert calls == []
     assert '1 items without text, 1 on sites with no extractor, fetching 0' in capsys.readouterr().out
+
+
+def test_backfill_walks_the_pages(quiet, monkeypatch, capsys):
+    import datetime
+    url = 'https://dunord.blogspot.com/feeds/posts/default'
+    monkeypatch.setattr(fetch.feeds, 'feeds', [('du Nord', url)])
+    monkeypatch.setattr(fetch.feeds, 'BLOGGER_PAGE', 2)
+    pages = {
+        1: [dict(item('https://dunord.blogspot.com/a'), source='du Nord', dt=datetime.datetime(2018, 1, 1), text=['a']),
+            dict(item('https://dunord.blogspot.com/b'), source='du Nord', dt=datetime.datetime(2017, 1, 1), text=['b'])],
+        3: [dict(item('https://dunord.blogspot.com/c'), source='du Nord', dt=datetime.datetime(2005, 1, 1), text=['c'])],
+        5: [],
+    }
+    asked = []
+    def parse_feed(page_url, source):
+        asked.append(page_url)
+        start = int(page_url.rsplit('=', 1)[1])
+        return pages[start]
+    monkeypatch.setattr(fetch.feeds, 'parse_feed', parse_feed)
+    assert fetch.backfill('du Nord') == 3
+    assert asked == [f'{url}?max-results=2&start-index={n}' for n in (1, 3, 5)]
+    assert [e['title'] for e in archive.read_items()] == ['t', 't', 't']
+    assert [e['dt'] for e in archive.read_items()] == ['2005-01-01 00:00:00', '2017-01-01 00:00:00', '2018-01-01 00:00:00']
+    assert archive.read_text(pages[3][0]) == ['c']
+    assert '3 items in the history of du Nord' in capsys.readouterr().out

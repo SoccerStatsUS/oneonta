@@ -1,0 +1,65 @@
+Contributing Editor Graham Fox
+
+Earlier this year, for one of my Library and Information Management classes that revolved around website design, labeling, and structure, I was tasked with comparing two sites that served the same function.
+
+Being the soccer Fanatico that I am, I went to town writing a nice 20 page paper on the differences and similarities of NFL.com and MLSSoccer.com. Today, I’m going to share with you the abbreviated version.
+
+I’ll be damned if I’m going to go to all the pain of writing a paper and not share that beautiful experience with the wonderful patrons of du Nord.
+
+Comparing and Contrasting NFL.com and MLSSoccer.com
+
+The websites of Major League Soccer (MLS), MLSSoccer.com, and the National Football League (NFL), NFL.com, bear a striking resemblance to one another. Like most sites that are similar in function, the main websites of different American major league sports feature a similar look, feel, and function. They subscribe to conventions that all American major league sport sites follow; not just the NFL and MLS.
+
+Both Major League Baseball and the National Basketball Association also subscribed to similar conventions. By building off each other they ensure that fans can easily find the information they need no matter which sport they are trying to find information about or follow. By creating a convention, the sports leagues ensure that a fan who knows exactly where to find current scores on NFL.com can also find current scores on other sites.
+
+Major League Soccer in particular benefits from following the conventions created by other major league sites. Because MLS does not have as a big a draw as other sports, it is important that their website follows conventions established by NFL.com and does not frustrate users with a steep learning curve.
+
+When each website is examined from the top down, similarities abound. Each site follows the convention found across the internet of having their main logo and website identification icon at the top left.
+
+At the top of the page, both sites list out the different teams that take part in their league. MLSSoccer.com goes out of the way to hide these icons. To find the different Major League Soccer team sites you have to click “MLS Network” which expands an accordion navigation section that lists each team.
+
+Each website also features a score ticker prominently at the top of the page. MLSSoccer.com allows a user to immediately view the six most recent games through the use of a flash application that lets users scrolls back and forth through the calendar year. NFL.com’s score ticker lists out each game that has taken place over a week. NFL.com’s score ticker is also a flash application, that is not as fancy at first glance, but during games it automatically updates with new scores and big plays.
+
+Under or above the score ticker is the website’s main “embedded navigation system” (Morville & Rosenfeld, 2006). Each site features some identical main navigation options including “News”, “Schedule”, “Players”, “Stats”, “Standings”, “Video”, “Fantasy”, “Team” or “Clubs”, and “Store”. Each site is a multifunctional hybrid type of “newspaper” (Morville & Rosenfeld, 2006), they both use a topical organization strategy throughout their navigation. Because the websites function as the main news outlet for the sport as well as a detailed database of news articles, video, standings, and stats, each site is both broad and deep (Morville & Rosenfeld, 2006).
+
+The biggest obvious difference between the two sites is that while NFL.com features a search function prominently in the top right hand corner of the page, MLSSoccer.com is missing a site wide search function altogether.
+
+The farther you move down the page on both sites, the more varied they become. There is no conventional order one you move past the fold. Each site uses blocks to list out a variety of different featured videos, articles, advertisements, and other sport related content.
+
+By selecting two tasks and follow them to completion on each site, we can compare and contrast the functionality of each.
+
+Task 1: Finding Scores and Details of Weekly Games
+
+A common task that sports fans use both NFL.com and MLSSoccer.com for is finding scores and media related to games that just took place. When a user can’t watch a game live because, it’s imperative that immediately upon going to the site, they can instantly find the score and information they are seeking. This is a very basic test for both sites. The games themselves build revenue for the league through attendance, advertisement, and product sales. Without games and the promotion around those games, there wouldn’t be a league.
+
+Finding Weekly Game Information on NFL.com
+
+Set prominently at the top of each site’s front page, both NFL.com and MLSSoccer.com use a live ticker that records current scores and results. NFL.com uses a less stylized but functional ticker packed with information including teams playing, score, quarter, and game time. If you click anywhere within one of the game boxes on the ticker, it directs you to a “Game Center” page. This page contains analysis, box scores, highlights, photos, and discussion. The page is organized by tabs set out horizontally. This lets the content fit into the main window and requires very little scrolling. Content inside this page is generally flash based with very few text links. This means each page takes longer to load.
+
+Finding Weekly Game Information on MLSSoccer.com
+
+The MLSSoccer.com website follows a similar convention. During a live game, it also displays teams playing, score, half, and game time. To view details about the game, you have to click “See Recap.” This label is deceiving because it doesn’t take you straight to video highlights as the word “See” implies. This is a case of labeling that doesn’t “speak the same language as the site’s users” (Morville & Rosenfeld, 2006). On a site that contains daily video content, users expect anything labeled “See” to take them to video. A better label would be “Recap” or “Read Recap”. Instead of taking you to a video recap, the label follows the convention set by NFL.com and takes you to a page titled “Matchcenter”.
+
+MLSSoccer.com sets out the navigation inside the page vertically with a few horizontal tabs. Confusing labeling continues. Although the page name is titled “Matchcenter” there is a “Matchcenter” tab that displays a different set of information. Content is generally more text based and less flash driven. This allows for quick load times.
+
+Task 2: Finding Player Statistics from a Previous Year
+
+The second task of finding a player’s statistic from a previous year is important for anyone writing articles, learning about player history, or doing research for their fantasy team. Again, we start by reviewing the main navigation of each site. Both sites use the labels “Stats” and “Players”. Each label sounds promising. We want statistics but we specifically we want to find the statistics of an individual player.
+
+Finding Player Statistics from a Previous Year on NFL.com
+
+After visually inspecting the navigation options on NFL.com, it because apparent by moving the mouse over the main navigation items that “Players” is the correct navigation choice. The “Players” heading drops down a list of four options, “Name”, “Position”, “Team Roster”, and “Historical Players”. After selecting “Name” users can then search and select the desired player.
+
+Once at the selected player’s page you are presented with a wealth and depth of statistical information that can be sorted in at least five different ways. Again, the NFL.com sites lays out navigation options in sub-pages horizontally in a “broad taxonomy” (Morville & Rosenfeld, 2006) by using inset tabs that requires very little scrolling.
+
+Finding Player Statistics from a Previous Year on MLSSoccer.com
+
+MLSSoccer.com’s path to a player’s statistics follows a similar road map, but does not give visual hints when you mouse over “Players”. Instead, when you mouse over “Statistics” drop-down options are presented that are very historical and team based choices which steers users towards the “Players” option. When “Players” is selected, users are taken to a page that allows them to search by name as well as sort alphabetically.
+
+Once a player is selected, users are taken to a page that allows you to sort information, but with fewer options. You can view player statistics year by year, but many of the in-depth options present on NFL.com are missing.
+
+ENDERS
+
+Call Sign
+
+0 Graham Fox 0 Email 0 Twitter 0

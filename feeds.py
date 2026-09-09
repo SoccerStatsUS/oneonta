@@ -21,7 +21,19 @@ feeds = [
     ('Society for American Soccer History', 'https://www.ussoccerhistory.org/feed/'),
     ('Backheeled', 'https://www.backheeled.com/rss/'),
     ('The Guardian', 'https://www.theguardian.com/football/mls/rss'),
+    # Blogger. Both finished; their whole runs are in the archive
+    # (`python -m oneonta.fetch --backfill`).
+    ('du Nord', 'https://dunord.blogspot.com/feeds/posts/default'),
+    ('A Moment of Brilliance: A Soccer History Blog',
+     'https://amofb.blogspot.com/feeds/posts/default'),
 ]
+
+BLOGGER_PAGE = 150
+
+
+def blogger_page(url, start):
+    """Blogger pages its whole history: start-index counts entries from 1."""
+    return f'{url}?max-results={BLOGGER_PAGE}&start-index={start}'
 
 
 class _Text(HTMLParser):
