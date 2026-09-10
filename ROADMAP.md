@@ -20,11 +20,9 @@ from that collection.
   mlsnextpro.com is the same Deltatre index as MLS and would work with one line in
   `feeds.INDEXES` and one in `articles.STORY_APIS`, but is twenty match previews
   and recaps every two days, so it wants a tag filter first.
-- [ ] `--backfill MLSSoccer.com` would walk the content index back past 2016, some
-  fifty thousand stories: about five hundred index pages, then days of page fetches
-  at five seconds each. Decide whether the history is wanted before running it.
-  `--backfill NWSLsoccer.com` is the same walk on a much smaller index, unchecked
-  how far back it goes.
+- [ ] `--backfill MLSSoccer.com` would walk the content index back to 2013, some
+  eighty thousand stories, at five seconds a story for the texts: days. Decide how
+  far back is wanted and run it with `--since`.
 - [ ] USL League One and the USL Super League are probably the same SportsEngine
   setup as the Championship (a tagged `news_rss_feed`); unchecked.
 - [ ] Soccer America's article pages are paywalled, so its items carry the feed

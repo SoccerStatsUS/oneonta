@@ -30,8 +30,8 @@ here; use the build's:
   and its text comes from the index, not the page. A SportsEngine site (the USL) has
   RSS, but only for the tag list its News section links.
 - A Blogger blog's whole history is one `--backfill` run away, and so is a content
-  index's, though at fifty thousand stories MLS's takes days of page fetches;
-  `--limit` and resumability are for that. WordPress pages its feed too
+  index's, though at eighty thousand stories MLS's takes days of page fetches;
+  `--since`, `--limit` and resumability are for that. WordPress pages its feed too
   (`/feed/?paged=N`) but nothing here walks that yet.
 
 ## Output contract

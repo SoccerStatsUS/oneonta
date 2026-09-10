@@ -16,7 +16,8 @@ yet, five seconds apart. Stop it whenever; the next run carries on.
 `--backfill SOURCE` walks a feed back to its first post instead of reading the
 feeds, for the feeds that page: Blogger, which is how du Nord and A Moment of
 Brilliance, both long finished, got their whole runs into the archive, and the MLS
-and NWSL content indexes, which have not been walked (MLS's reaches back past 2016).
+and NWSL content indexes. `--since DATE` stops the walk there, for MLS's index, which
+reaches back to 2013 and eighty thousand stories.
 
 Commit `data/` afterwards. The archive is the news history: the build reloads all of
 it every time, so nothing is lost when the database is rebuilt.

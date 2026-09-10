@@ -4,15 +4,17 @@ every archived item that has no text yet.
 
     cd ~/soccer
     build/.venv/bin/python -m oneonta.fetch [--limit N] [--no-feeds]
-    build/.venv/bin/python -m oneonta.fetch --backfill SOURCE [--limit N]
+    build/.venv/bin/python -m oneonta.fetch --backfill SOURCE [--since DATE] [--limit N]
 
 Resumable: stop it whenever, and the next run carries on from the items still
 missing text. --backfill walks a feed's whole history instead of reading the
-feeds, where the feed pages (Blogger, the MLS content index). Request policy is
+feeds, where the feed pages (Blogger, the MLS content index); --since stops the
+walk at a date, for an index that reaches back further than wanted. Request policy is
 the scrapers repo's: five seconds between requests, one minute then five before
 giving up on a transient failure, and no retry on a 4xx other than 408 and 429.
 """
 import argparse
+import datetime
 import sys
 import time
 import urllib.parse
@@ -77,18 +79,22 @@ def update_items():
     return archive_rows(feeds.parse_feeds())
 
 
-def backfill(source):
-    """Walk a feed back to its first post."""
+def backfill(source, since=None):
+    """Walk a feed back to its first post, or to `since` (a date) where it pages newest first."""
     url = dict(feeds.feeds)[source]
     rows, skip = [], 0
     while True:
         page = feeds.parse_feed(feeds.page(url, skip), source)
         if not page:
             break
+        if since:
+            page = [r for r in page if r['dt'].date() >= since]
         rows.extend(page)
+        if since and len(page) < feeds.PAGE:
+            break
         skip += feeds.PAGE
         time.sleep(REQUEST_DELAY)
-    print(f'{len(rows)} items in the history of {source}')
+    print(f'{len(rows)} items in the history of {source}' + (f' since {since}' if since else ''))
     return archive_rows(rows)
 
 
@@ -126,10 +132,12 @@ def main(argv=None):
                         help='skip the feeds; only fetch text for archived items')
     parser.add_argument('--backfill', metavar='SOURCE',
                         help="walk this feed's whole history instead of the feeds")
+    parser.add_argument('--since', type=datetime.date.fromisoformat, metavar='DATE',
+                        help='with --backfill: stop the walk at this date (YYYY-MM-DD)')
     args = parser.parse_args(argv)
 
     if args.backfill:
-        backfill(args.backfill)
+        backfill(args.backfill, args.since)
     elif not args.no_feeds:
         update_items()
     fetch_missing(args.limit)

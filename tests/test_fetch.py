@@ -150,3 +150,27 @@ def test_backfill_walks_the_pages(quiet, monkeypatch, capsys):
     assert [e['dt'] for e in archive.read_items()] == ['2005-01-01 00:00:00', '2017-01-01 00:00:00', '2018-01-01 00:00:00']
     assert archive.read_text(pages[3][0]) == ['c']
     assert '3 items in the history of du Nord' in capsys.readouterr().out
+
+
+def test_backfill_since_stops_the_walk(quiet, monkeypatch, capsys):
+    import datetime
+    url = 'https://dapi.mlssoccer.com/v2/content/en-us/stories?$limit=2'
+    monkeypatch.setattr(fetch.feeds, 'feeds', [('MLSSoccer.com', url)])
+    monkeypatch.setattr(fetch.feeds, 'PAGE', 2)
+    def story(slug, dt):
+        return dict(item(f'https://www.mlssoccer.com/news/{slug}'), source='MLSSoccer.com', dt=dt)
+    pages = {
+        0: [story('a', datetime.datetime(2026, 9, 10)), story('b', datetime.datetime(2026, 9, 9))],
+        2: [story('c', datetime.datetime(2026, 9, 1)), story('d', datetime.datetime(2026, 8, 31))],
+        4: [story('e', datetime.datetime(2026, 8, 1)), story('f', datetime.datetime(2026, 7, 1))],
+    }
+    asked = []
+    def parse_feed(page_url, source):
+        asked.append(page_url)
+        return pages[int(page_url.rsplit('=', 1)[1])]
+    monkeypatch.setattr(fetch.feeds, 'parse_feed', parse_feed)
+    assert fetch.backfill('MLSSoccer.com', datetime.date(2026, 9, 1)) == 3
+    # the page holding the cutoff is the last one asked for; nothing older is kept
+    assert asked == [f'{url}&$skip={n}' for n in (0, 2)]
+    assert sorted(e['url'][-1] for e in archive.read_items()) == ['a', 'b', 'c']
+    assert '3 items in the history of MLSSoccer.com since 2026-09-01' in capsys.readouterr().out
