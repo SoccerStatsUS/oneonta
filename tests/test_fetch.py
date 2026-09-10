@@ -116,6 +116,18 @@ def test_update_items_takes_text_from_the_feed(quiet, monkeypatch, capsys):
     assert fetch.update_items() == 0
 
 
+def test_fetch_missing_one_source(quiet, monkeypatch, capsys):
+    guardian = 'https://www.theguardian.com/football/2026/sep/10/x'
+    with open(archive.ITEMS_PATH, 'w') as f:
+        f.write('{"title":"t","summary":"s","url":"%s","source":"ESPN.com","dt":"2026-09-09 12:00:00"}\n' % ESPN)
+        f.write('{"title":"t","summary":"s","url":"%s","source":"The Guardian","dt":"2026-09-09 13:00:00"}\n' % guardian)
+    calls = []
+    monkeypatch.setattr(urllib.request, 'urlopen', fake_urlopen([PAGE], calls))
+    fetch.fetch_missing(source='ESPN.com')
+    assert calls == [ESPN]
+    assert '1 items without text, 0 on sites with no extractor, fetching 1' in capsys.readouterr().out
+
+
 def test_fetch_missing_skips_sites_without_an_extractor(quiet, monkeypatch, capsys):
     sa = 'https://www.socceramerica.com/story/'
     with open(archive.ITEMS_PATH, 'w') as f:

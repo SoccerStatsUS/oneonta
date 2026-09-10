@@ -3,7 +3,7 @@ Update the news archive: read the feeds for new items, then fetch the page of
 every archived item that has no text yet.
 
     cd ~/soccer
-    build/.venv/bin/python -m oneonta.fetch [--limit N] [--no-feeds]
+    build/.venv/bin/python -m oneonta.fetch [--limit N] [--no-feeds] [--source NAME]
     build/.venv/bin/python -m oneonta.fetch --backfill SOURCE [--since DATE] [--limit N]
 
 Resumable: stop it whenever, and the next run carries on from the items still
@@ -12,6 +12,7 @@ feeds, where the feed pages (Blogger, the MLS content index); --since stops the
 walk at a date, for an index that reaches back further than wanted. Request policy is
 the scrapers repo's: five seconds between requests, one minute then five before
 giving up on a transient failure, and no retry on a 4xx other than 408 and 429.
+The five seconds are per site, so --source lets one run per site go side by side.
 """
 import argparse
 import datetime
@@ -98,8 +99,9 @@ def backfill(source, since=None):
     return archive_rows(rows)
 
 
-def fetch_missing(limit=None):
-    missing = [e for e in reversed(archive.read_items()) if not archive.has_text(e)]
+def fetch_missing(limit=None, source=None):
+    missing = [e for e in reversed(archive.read_items()) if not archive.has_text(e)
+               and (source is None or e['source'] == source)]
     items = [e for e in missing if articles.has_extractor(e['url'])]
     skipped = len(missing) - len(items)
     if limit is not None:
@@ -130,6 +132,7 @@ def main(argv=None):
     parser.add_argument('--limit', type=int, help='fetch at most this many pages')
     parser.add_argument('--no-feeds', action='store_true',
                         help='skip the feeds; only fetch text for archived items')
+    parser.add_argument('--source', metavar='NAME', help='only fetch text for this source')
     parser.add_argument('--backfill', metavar='SOURCE',
                         help="walk this feed's whole history instead of the feeds")
     parser.add_argument('--since', type=datetime.date.fromisoformat, metavar='DATE',
@@ -140,7 +143,7 @@ def main(argv=None):
         backfill(args.backfill, args.since)
     elif not args.no_feeds:
         update_items()
-    fetch_missing(args.limit)
+    fetch_missing(args.limit, args.source)
 
 
 if __name__ == '__main__':

@@ -11,9 +11,10 @@ them to the archive, then fetches the page of every archived item that has no te
 yet, five seconds apart. Stop it whenever; the next run carries on.
 
     cd ~/soccer
-    build/.venv/bin/python -m oneonta.fetch [--limit N] [--no-feeds]
+    build/.venv/bin/python -m oneonta.fetch [--limit N] [--no-feeds] [--source NAME]
 
-`--backfill SOURCE` walks a feed back to its first post instead of reading the
+The five seconds are per site, so `--source NAME` lets a run per site go side by
+side. `--backfill SOURCE` walks a feed back to its first post instead of reading the
 feeds, for the feeds that page: Blogger, which is how du Nord and A Moment of
 Brilliance, both long finished, got their whole runs into the archive, and the MLS
 and NWSL content indexes. `--since DATE` stops the walk there, for MLS's index, which
