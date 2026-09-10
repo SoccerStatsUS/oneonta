@@ -15,6 +15,7 @@ giving up on a transient failure, and no retry on a 4xx other than 408 and 429.
 import argparse
 import sys
 import time
+import urllib.parse
 import urllib.request
 from urllib.error import HTTPError
 
@@ -27,6 +28,8 @@ TIMEOUT = 30
 
 
 def fetch_page(url):
+    # A slug can carry a non-ASCII letter, which urllib will not send as is.
+    url = urllib.parse.quote(url, safe="!#$%&'()*+,/:;=?@[]~")
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     for delay in [*RETRY_DELAYS, None]:
         try:

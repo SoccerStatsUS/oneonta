@@ -46,6 +46,16 @@ def test_fetch_text(quiet, monkeypatch):
     assert archive.read_text(item(ESPN)) == ['one', 'two']
 
 
+def test_non_ascii_url_is_quoted(quiet, monkeypatch):
+    url = 'https://www.espn.com/soccer/story/_/id/1/kær?x=1&y=%20'
+    calls = []
+    monkeypatch.setattr(urllib.request, 'urlopen', fake_urlopen([PAGE], calls))
+    assert fetch.fetch_text(item(url)) == 2
+    assert calls == ['https://www.espn.com/soccer/story/_/id/1/k%C3%A6r?x=1&y=%20']
+    # archived under the url as the feed gave it
+    assert archive.read_text(item(url)) == ['one', 'two']
+
+
 def test_404_is_recorded_not_retried(quiet, monkeypatch):
     calls = []
     monkeypatch.setattr(urllib.request, 'urlopen', fake_urlopen([404], calls))
