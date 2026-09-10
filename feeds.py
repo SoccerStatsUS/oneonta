@@ -127,8 +127,10 @@ def parse_document(doc, source):
 
 
 def parse_feed(url, source):
+    # SportsEngine answers Python's default agent with a 403.
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     try:
-        with urllib.request.urlopen(url, timeout=TIMEOUT) as r:
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
             doc = r.read()
     except (OSError, ValueError) as e:
         warnings.warn(f'{source}: could not fetch {url} ({e})')

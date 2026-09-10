@@ -124,6 +124,17 @@ def test_not_a_feed_warns():
         assert feeds.parse_document('<html><body>nope</body></html>', 'X') == []
 
 
+def test_feed_request_carries_a_user_agent(monkeypatch):
+    seen = []
+    def urlopen(req, timeout=None):
+        seen.append(req.get_header('User-agent'))
+        raise OSError('no')
+    monkeypatch.setattr(feeds.urllib.request, 'urlopen', urlopen)
+    with pytest.warns(UserWarning, match='could not fetch'):
+        feeds.parse_feed('https://www.uslchampionship.com/news_rss_feed?tags=1', 'X')
+    assert seen == ['Mozilla/5.0']
+
+
 def test_dead_host_warns():
     with pytest.warns(UserWarning, match='could not fetch'):
         assert feeds.parse_feed('http://127.0.0.1:9/feed', 'X') == []
