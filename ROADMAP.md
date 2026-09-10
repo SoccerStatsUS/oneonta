@@ -19,6 +19,10 @@ from that collection.
 - [ ] `--backfill MLSSoccer.com` would walk the content index back past 2016, some
   fifty thousand stories: about five hundred index pages, then days of page fetches
   at five seconds each. Decide whether the history is wanted before running it.
+  `--backfill NWSLsoccer.com` is the same walk on a much smaller index, unchecked
+  how far back it goes.
+- [ ] USL League One and the USL Super League are probably the same SportsEngine
+  setup as the Championship (a tagged `news_rss_feed`); unchecked.
 - [ ] Soccer America's article pages are paywalled, so its items carry the feed
   summary only. Revisit if a subscription or a full-text feed turns up.
 

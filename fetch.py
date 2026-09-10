@@ -46,14 +46,14 @@ def fetch_page(url):
 def fetch_text(item):
     """Fetch one item's page and archive its text. Returns the paragraph count."""
     try:
-        html = fetch_page(item['url'])
+        doc = fetch_page(articles.fetch_url(item['url']))
     except HTTPError as e:
         if 400 <= e.code < 500:
             # Gone for good; record that so it is not asked for again.
             archive.write_text(item, [])
             return 0
         raise
-    paragraphs = articles.extract(item['url'], html)
+    paragraphs = articles.extract(item['url'], doc)
     if not paragraphs:
         print(f'no article found at {item["url"]}', file=sys.stderr)
     archive.write_text(item, paragraphs)
@@ -66,7 +66,7 @@ def archive_rows(rows):
     for row in rows:
         # Only where the page is not going to be fetched: a site with an
         # extractor gets the whole article, while its feed may carry a teaser.
-        if row.get('text') and not articles.body_for(row['url']) and not archive.has_text(row):
+        if row.get('text') and not articles.has_extractor(row['url']) and not archive.has_text(row):
             archive.write_text(row, row['text'])
             from_feed += 1
     print(f'{added} new items from the feeds, {from_feed} texts taken from the feeds')
@@ -94,7 +94,7 @@ def backfill(source):
 
 def fetch_missing(limit=None):
     missing = [e for e in reversed(archive.read_items()) if not archive.has_text(e)]
-    items = [e for e in missing if articles.body_for(e['url'])]
+    items = [e for e in missing if articles.has_extractor(e['url'])]
     skipped = len(missing) - len(items)
     if limit is not None:
         items = items[:limit]

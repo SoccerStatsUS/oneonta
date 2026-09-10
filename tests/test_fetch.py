@@ -56,6 +56,16 @@ def test_non_ascii_url_is_quoted(quiet, monkeypatch):
     assert archive.read_text(item(url)) == ['one', 'two']
 
 
+def test_story_api_sites_fetch_the_record(quiet, monkeypatch):
+    url = 'https://www.nwslsoccer.com/news/some-story'
+    record = '{"parts": [{"type": "markdown", "content": "One.\\n\\nTwo."}, {"type": "photo"}]}'
+    calls = []
+    monkeypatch.setattr(urllib.request, 'urlopen', fake_urlopen([record], calls))
+    assert fetch.fetch_text(item(url)) == 2
+    assert calls == ['https://dapi.nwslsoccer.com/v2/content/en-us/stories/some-story']
+    assert archive.read_text(item(url)) == ['One.', 'Two.']
+
+
 def test_404_is_recorded_not_retried(quiet, monkeypatch):
     calls = []
     monkeypatch.setattr(urllib.request, 'urlopen', fake_urlopen([404], calls))

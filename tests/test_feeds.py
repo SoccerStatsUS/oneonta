@@ -62,6 +62,25 @@ def test_blogger_text():
         'https://b.blogspot.com/feeds/posts/default?max-results=100&start-index=101'
 
 
+def test_usl_rss():
+    rows = feeds.parse_document((FIXTURES / 'usl.xml').read_bytes(), 'USL Championship')
+    assert len(rows) == 20
+    assert all(set(r) == KEYS for r in rows)
+    # the feed's referral query is dropped; the archive keys on the url
+    assert rows[-1]['url'] == 'https://www.uslchampionship.com/news_article/show/1366482'
+    assert rows[-1]['dt'] == local(2026, 9, 10, 16, 0)
+    assert rows[-1]['summary'].startswith('Eddy Davis III’s hat trick')
+    assert '<' not in rows[-1]['summary']
+
+
+def test_nwsl_stories_json():
+    rows = feeds.parse_document((FIXTURES / 'nwslsoccer.json').read_bytes(), 'NWSLsoccer.com')
+    assert len(rows) == 3
+    assert rows[-1]['url'].startswith('https://www.nwslsoccer.com/news/matchweek-21-croix-bethune')
+    assert rows[-1]['dt'] == local(2026, 9, 10, 16, 9, 12, 375000)
+    assert [name for name, url in feeds.feeds if 'dapi.' in url] == ['MLSSoccer.com', 'NWSLsoccer.com']
+
+
 def test_mls_stories_json():
     rows = feeds.parse_document((FIXTURES / 'mlssoccer.json').read_bytes(), 'MLSSoccer.com')
     assert len(rows) == 3
@@ -81,7 +100,7 @@ def test_mls_stories_json():
 
 
 def test_no_text_key_without_content():
-    for name in ('socceramerica', 'guardian-mls', 'espn'):
+    for name in ('socceramerica', 'guardian-mls', 'espn', 'usl'):
         rows = feeds.parse_document((FIXTURES / f'{name}.xml').read_bytes(), name)
         assert rows and not any('text' in r for r in rows), name
 

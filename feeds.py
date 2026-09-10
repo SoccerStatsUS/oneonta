@@ -13,6 +13,10 @@ MAX_LEN = 1023
 TIMEOUT = 60
 PAGE = 100
 
+# The tags the USL Championship site's News section links; its feed answers
+# only for a tag list, the bare path is a 404.
+USL_TAGS = ('2425607,2356889,2356907,2356901,2356896,2356886,2356893,2356900,2356892,2356911,2356895,2356899,2356888,2356887,2356904,2356919,2356921,2356942,2356922,2356939,2356915,2356916,2356944,2356918,2356938,2356943,2356914,2356920,2356941,2356913,2430134,2424354,2427472,2424366,2427468,2424346,2430124,2424350,2424360,2427466,2580152,2424352,2427467,2424370,2453473,2482866,2482961,2482971,2453476,2447544,2580135,2639268,2428854,2454163,2357328,2451565,2424358,2603770,2425682')
+
 feeds = [
     ('ESPN.com', 'https://www.espn.com/espn/rss/soccer/news'),
     # Refuses https; carries its whole archive back to 2012 (~6MB per fetch).
@@ -28,11 +32,18 @@ feeds = [
     ('du Nord', 'https://dunord.blogspot.com/feeds/posts/default'),
     ('A Moment of Brilliance: A Soccer History Blog',
      'https://amofb.blogspot.com/feeds/posts/default'),
-    # No RSS; this is the JSON content index behind the site, newest first.
-    ('MLSSoccer.com', f'https://dapi.mlssoccer.com/v2/content/en-us/stories?$limit={PAGE}'),
+    ('USL Championship', 'https://www.uslchampionship.com/news_rss_feed?tags=' + USL_TAGS),
 ]
 
-STORY_URL = 'https://www.mlssoccer.com/news/{}'
+# Sites with no RSS but a JSON content index behind them (Deltatre), newest
+# first. Their stories live at https://www.<host>/news/<slug>, and the page is
+# fetched through the same index (`articles.STORY_APIS`).
+INDEXES = {
+    'MLSSoccer.com': 'mlssoccer.com',
+    'NWSLsoccer.com': 'nwslsoccer.com',
+}
+feeds += [(name, f'https://dapi.{host}/v2/content/en-us/stories?$limit={PAGE}')
+          for name, host in INDEXES.items()]
 
 
 def page(url, skip):
@@ -40,7 +51,7 @@ def page(url, skip):
     The feed's items after the first `skip`, for walking a whole history.
     Blogger counts entries from 1; the dapi index skips from 0.
     """
-    if 'dapi.mlssoccer.com' in url:
+    if 'dapi.' in url:
         return f'{url}&$skip={skip}'
     return f'{url}?max-results={PAGE}&start-index={skip + 1}'
 
@@ -62,14 +73,14 @@ def strip_html(s):
 
 
 def parse_stories(data, source):
-    """The dapi content index: title, slug, summary and a UTC contentDate."""
+    """A content index page: title, slug, summary and a UTC contentDate."""
     l = []
     for item in data['items']:
         dt = datetime.datetime.fromisoformat(item['contentDate'])
         l.append({
             'title': item.get('title', '')[:MAX_LEN],
             'summary': strip_html(item.get('summary') or '')[:MAX_LEN],
-            'url': STORY_URL.format(item['slug'])[:MAX_LEN],
+            'url': f'https://www.{INDEXES[source]}/news/{item["slug"]}'[:MAX_LEN],
             'dt': dt.astimezone().replace(tzinfo=None),
             'source': source,
         })
@@ -94,10 +105,14 @@ def parse_document(doc, source):
         if not published:
             continue
 
+        link = e.get('link', '')
+        # SportsEngine tags every link with a referral; the archive keys on the url.
+        if 'referral=rss' in link:
+            link = link.split('?', 1)[0]
         row = {
             'title': e.get('title', '')[:MAX_LEN],
             'summary': strip_html(e.get('summary', ''))[:MAX_LEN],
-            'url': e.get('link', '')[:MAX_LEN],
+            'url': link[:MAX_LEN],
             # published_parsed is UTC; s2 runs USE_TZ=False and wants naive local.
             'dt': datetime.datetime.fromtimestamp(calendar.timegm(published)),  # noqa: DTZ006
             'source': source,

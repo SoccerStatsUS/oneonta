@@ -25,11 +25,12 @@ here; use the build's:
 - A new site needs an entry in `articles.BODIES` and a saved page in `tests/fixtures`,
   unless its feed carries the article text (`content`), in which case the archive takes
   it from there. A site with neither is never fetched and keeps the feed summary only.
-- A site with no RSS may still have a JSON index behind it; mlssoccer.com does, and
-  `parse_document` takes a document opening with `{` for that index. A second such
-  site means teaching it to tell them apart.
-- A Blogger blog's whole history is one `--backfill` run away, and so is the MLS
-  content index's, though at fifty thousand stories the page fetches take days;
+- A site with no RSS may still have a JSON index behind it. The Deltatre sites (MLS,
+  NWSL) do: another one is a line in `feeds.INDEXES` and one in `articles.STORY_APIS`,
+  and its text comes from the index, not the page. A SportsEngine site (the USL) has
+  RSS, but only for the tag list its News section links.
+- A Blogger blog's whole history is one `--backfill` run away, and so is a content
+  index's, though at fifty thousand stories MLS's takes days of page fetches;
   `--limit` and resumability are for that. WordPress pages its feed too
   (`/feed/?paged=N`) but nothing here walks that yet.
 

@@ -1,6 +1,6 @@
 # oneonta
 
-Soccer news for the site. Reads RSS/Atom feeds (and one JSON index), keeps every
+Soccer news for the site. Reads RSS/Atom feeds (and two JSON indexes), keeps every
 item and the text of its article in an archive under `data/`, and hands the build a
 flat list of items.
 
@@ -16,7 +16,7 @@ yet, five seconds apart. Stop it whenever; the next run carries on.
 `--backfill SOURCE` walks a feed back to its first post instead of reading the
 feeds, for the feeds that page: Blogger, which is how du Nord and A Moment of
 Brilliance, both long finished, got their whole runs into the archive, and the MLS
-content index, which reaches back past 2016 and has not been walked.
+and NWSL content indexes, which have not been walked (MLS's reaches back past 2016).
 
 Commit `data/` afterwards. The archive is the news history: the build reloads all of
 it every time, so nothing is lost when the database is rebuilt.
@@ -35,7 +35,12 @@ it every time, so nothing is lost when the database is rebuilt.
 ## articles.py
 
 - `BODIES` — which element holds the story on each site, by host
-- `extract(url, html)` — the paragraphs inside it, or `[]` for an unknown site
+- `STORY_APIS` — the JSON record behind a story on the Deltatre sites (MLS, NWSL), by
+  host; `fetch_url(url)` is what `fetch.py` asks for, the record where there is one
+  and the page otherwise, and `has_extractor(url)` says whether a site has either
+- `extract(url, doc)` — the paragraphs of the page or record, or `[]` for an unknown
+  site. A record's body is markdown parts, which `markdown_paragraphs` reduces to
+  text: links to their text, headings dropped, list items one paragraph each
 - `paragraphs(html)` — the paragraphs of a fragment, used for feeds that carry the
   article in the entry itself; markup with no `<p>` (Blogger) is split at line
   breaks and list items instead
@@ -48,9 +53,11 @@ one, since its pages are paywalled to a teaser paragraph.
 ## feeds.py
 
 - `feeds` — the feed list, `(source name, feed url)` pairs
+- `INDEXES` — the sites with no RSS but a JSON content index behind them, by source
+  name; their feed entries are generated from it
 - `parse_document(doc, source)` — a feed document (bytes or str), parsed into dicts
   sorted by date; this is what the tests exercise. A document opening with `{` is
-  taken for the MLS content index and parsed by `parse_stories`
+  taken for a content index page and parsed by `parse_stories`
 - `page(url, skip)` — the feed's items after the first `skip`, for `--backfill`
 - `parse_feed(url, source)` — fetch one feed and parse it; warns and returns `[]`
   on any fetch or parse failure
@@ -59,11 +66,14 @@ one, since its pages are paywalled to a teaser paragraph.
 Each item is `{title, summary, url, dt, source}`. `dt` is a naive local datetime;
 `source` is the display name from the feed list, not the url.
 
-mlssoccer.com stopped publishing RSS; its feed here is the JSON content index behind
-the site (`dapi.mlssoccer.com/v2/content/en-us/stories`), newest first, one hundred
-stories a page. Each story's page is `https://www.mlssoccer.com/news/<slug>`, and the
-article path fetches that like any other site. The index is the league's own output,
-so it carries vote promos and highlight roundups alongside the news.
+mlssoccer.com and nwslsoccer.com publish no RSS; their feeds here are the JSON
+content index behind each site (`dapi.<host>/v2/content/en-us/stories`), newest
+first, one hundred stories a page. A story's url is `https://www.<host>/news/<slug>`,
+and its text comes from the same index (`articles.STORY_APIS`), since the NWSL page
+is a client-rendered shell with no text in it. The indexes are the leagues' own
+output, so they carry vote promos and highlight roundups alongside the news. The USL
+Championship feed is SportsEngine's, which answers only for the tag list the site's
+News section links; its links carry a referral query that `parse_document` drops.
 
 Run it on its own to print the newest items the feeds currently return:
 
@@ -100,10 +110,11 @@ Two couplings are worth knowing before editing the feed list:
 
 ## Current state
 
-Ten feeds. ESPN soccer and Soccer America for the daily volume, American Soccer
+Twelve feeds. ESPN soccer and Soccer America for the daily volume, American Soccer
 Now (which publishes its whole archive back to 2012, about 6,500 items, a 6MB fetch),
 The Equalizer for the women's game, the Society for American Soccer History,
-Backheeled for the lower leagues, the Guardian's MLS tag, MLSsoccer.com through its
-content index, and two finished Blogger blogs whose full runs are archived: du Nord,
-the daily American soccer link roundup from 2005 to 2018, and A Moment of Brilliance. The archive holds them all and s2
+Backheeled for the lower leagues, the Guardian's MLS tag, MLSsoccer.com and
+NWSLsoccer.com through their content indexes, the USL Championship, and two finished
+Blogger blogs whose full runs are archived: du Nord, the daily American soccer link
+roundup from 2005 to 2018, and A Moment of Brilliance. The archive holds them all and s2
 serves them at `/news/`. See [ROADMAP.md](ROADMAP.md) for what needs doing.

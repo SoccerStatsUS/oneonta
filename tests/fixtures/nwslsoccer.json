@@ -1,0 +1,179 @@
+{
+ "pagination": {
+  "nextUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/stories?$limit=20&$skip=20",
+  "maxItems": 100
+ },
+ "meta": {
+  "apiVersion": "2.0",
+  "generatedAt": "2026-09-10T17:47:40.4237386Z"
+ },
+ "items": [
+  {
+   "type": "story",
+   "_translationId": "daaa2368-5359-4884-b1ae-bbd50bd64f82",
+   "_entityId": "f10b568b-11cc-4911-8e4c-440898ffffe4",
+   "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/stories/matchweek-21-croix-bethune-cloe-lacasse-approach-assist-record-a-wide-open-shield-race-and-more",
+   "slug": "matchweek-21-croix-bethune-cloe-lacasse-approach-assist-record-a-wide-open-shield-race-and-more",
+   "title": "Matchweek 21: Croix Bethune, Cloé Lacasse approach assist record, a wide open Shield race, and more ",
+   "tags": [
+    {
+     "_translationId": "35dc3dce-7b43-444b-b4a8-9d20ab19ba81",
+     "_entityId": "487c00c8-66a9-4adc-b171-ae6e5f737b38",
+     "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/tags/match-previews-and-recaps",
+     "title": "Match Previews and Recaps",
+     "slug": "match-previews-and-recaps",
+     "neutralSlug": "match-previews-and-recaps",
+     "externalSourceReference": {},
+     "fields": {}
+    }
+   ],
+   "fields": {
+    "author": "NWSL Editor"
+   },
+   "createdBy": "Angelique Fiske",
+   "lastUpdatedBy": "Angelique Fiske",
+   "lastUpdatedDate": "2026-09-10T16:09:12.375Z",
+   "contentDate": "2026-09-10T16:09:12.375Z",
+   "featured": 0,
+   "headline": "Will the Washington Spirit boot Gotham from first place? ",
+   "summary": "Upsets! Last-minute game-winners! Streaks broken! If last weekend taught us anything, it’s that chaos is always right around the corner in the NWSL. This week we have a lot to look forward to: must-win matches, record breaking potential, and so much more.\nLet’s take a look at the Matchweek ahead.",
+   "thumbnail": {
+    "title": "GettyImages-2292626364",
+    "templateUrl": "https://images.nwslsoccer.com/image/private/{formatInstructions}/prd/w6i7qwbbqxumgcilcfwc",
+    "thumbnailUrl": "https://images.nwslsoccer.com/image/private/t_ratio1_1-size20/prd/w6i7qwbbqxumgcilcfwc",
+    "format": "jpg",
+    "overriddenFormats": {},
+    "slug": "gettyimages-2292626364",
+    "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/photos/gettyimages-2292626364"
+   }
+  },
+  {
+   "type": "story",
+   "_translationId": "67d8e2e8-07f9-41dc-a722-af770ebbd629",
+   "_entityId": "48d555d0-4202-4722-9f14-ace25d1dd69c",
+   "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/stories/player-of-the-week-presented-by-at-t",
+   "slug": "player-of-the-week-presented-by-at-t",
+   "title": "NWSL Player of the Week presented by AT&T",
+   "tags": [],
+   "fields": {
+    "author": "NWSL Editor",
+    "hideHeadlineFromHero": false
+   },
+   "createdBy": "Antonia Loffredo",
+   "lastUpdatedBy": "Sarah Morales",
+   "lastUpdatedDate": "2026-09-10T16:51:09.063Z",
+   "contentDate": "2026-09-09T16:00:00Z",
+   "context": {
+    "_translationId": "84a67054-1fad-45f8-b528-a77b2e52fa97",
+    "_entityId": "707e1703-fd25-40c7-8bb2-f1ac9feab93f",
+    "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/tags/awards",
+    "title": "awards",
+    "slug": "awards",
+    "neutralSlug": "awards",
+    "externalSourceReference": {},
+    "fields": {}
+   },
+   "featured": 0,
+   "headline": "",
+   "summary": "NWSL Player of the Week presented by AT&T is a voting series that allows YOU get to choose who you thought brought their A-game every week. This is a fully fan-powered vote, taking place exclusively on the NWSL’s Instagram and X accounts. Head to those platforms on Monday to see",
+   "thumbnail": {
+    "title": "GettyImages-2293869706",
+    "templateUrl": "https://images.nwslsoccer.com/image/private/{formatInstructions}/prd/bpopv6ebw2kqgvplia1q",
+    "thumbnailUrl": "https://images.nwslsoccer.com/image/private/t_ratio1_1-size20/prd/bpopv6ebw2kqgvplia1q",
+    "format": "jpg",
+    "overriddenFormats": {},
+    "slug": "gettyimages-2293869706",
+    "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/photos/gettyimages-2293869706"
+   }
+  },
+  {
+   "type": "story",
+   "_translationId": "dbe76591-2b4b-4115-96aa-03f9f02029ca",
+   "_entityId": "0caa8d51-cc95-4e58-8a3f-a7381d88ce64",
+   "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/stories/barbra-banda-temwa-chawinga-lead-nwsl-ballon-d-or-feminin-nominations",
+   "slug": "barbra-banda-temwa-chawinga-lead-nwsl-ballon-d-or-feminin-nominations",
+   "title": "Barbra Banda, Temwa Chawinga lead NWSL Ballon d'Or Féminin nominations ",
+   "tags": [
+    {
+     "_translationId": "e0a04259-02f3-4c34-8acb-3fbd47a3fad0",
+     "_entityId": "a54500b7-19e7-4a98-bdc5-c3dc57fc2e11",
+     "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/tags/ballon-d-or-feminin",
+     "title": "Ballon d’Or Féminin",
+     "slug": "ballon-d-or-feminin",
+     "neutralSlug": "ballon-d-or-feminin",
+     "externalSourceReference": {},
+     "fields": {}
+    },
+    {
+     "_translationId": "e8ddb8a2-aa71-4207-a4f6-64012ab04b63",
+     "_entityId": "ca4b2b26-ae1a-4881-acfe-2b0d7aefcc56",
+     "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/tags/barbra-banda",
+     "title": "Barbra Banda",
+     "slug": "barbra-banda",
+     "neutralSlug": "barbra-banda",
+     "externalSourceReference": {},
+     "fields": {}
+    },
+    {
+     "_translationId": "051c039f-30df-4e89-9ddd-4a363fe1dd2b",
+     "_entityId": "86a439ea-81bb-4adb-b3ab-b8b3734f8126",
+     "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/tags/temwa-chawinga",
+     "title": "Temwa Chawinga",
+     "slug": "temwa-chawinga",
+     "neutralSlug": "temwa-chawinga",
+     "externalSourceReference": {},
+     "fields": {}
+    },
+    {
+     "_translationId": "c2351012-acc6-4024-8715-82b510a31202",
+     "_entityId": "5f212ed2-16f9-42f7-95f4-a0d9837f5084",
+     "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/tags/rose-lavelle",
+     "title": "Rose Lavelle",
+     "slug": "rose-lavelle",
+     "neutralSlug": "rose-lavelle",
+     "externalSourceReference": {},
+     "fields": {}
+    },
+    {
+     "_translationId": "c1c63b16-6e0f-477a-9426-b4273d722ff3",
+     "_entityId": "2d509bea-3bc1-4095-b9aa-6891b73492f6",
+     "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/tags/lorena",
+     "title": "Lorena",
+     "slug": "lorena",
+     "neutralSlug": "lorena",
+     "externalSourceReference": {},
+     "fields": {}
+    },
+    {
+     "_translationId": "d727dff8-eea4-49e2-85b2-4b73c0483c3f",
+     "_entityId": "bfc80da5-8015-4c9e-b4e7-6daaebd6507f",
+     "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/tags/ann-katrin-berger",
+     "title": "Ann-Katrin Berger",
+     "slug": "ann-katrin-berger",
+     "neutralSlug": "ann-katrin-berger",
+     "externalSourceReference": {},
+     "fields": {}
+    }
+   ],
+   "fields": {
+    "author": "Angelique Fiske"
+   },
+   "createdBy": "Angelique Fiske",
+   "lastUpdatedBy": "Angelique Fiske",
+   "lastUpdatedDate": "2026-09-08T22:02:30.208Z",
+   "contentDate": "2026-09-08T20:03:54.389Z",
+   "featured": 0,
+   "headline": "Four NWSL players made the 2026 Ballon d'Or Féminin shortlist",
+   "summary": "The shortlist for the most prestigious award in soccer, the Ballon d'Or Féminin, was announced on September 8. The Ballon d'Or is awarded to the best player in the world for the previous season by \"France Football\" magazine, and four NWSL players made the cut.\nBarbra Banda led the nominations",
+   "thumbnail": {
+    "title": "GettyImages-2275243612",
+    "templateUrl": "https://images.nwslsoccer.com/image/private/{formatInstructions}/prd/dicsxx85odybvarcifw1",
+    "thumbnailUrl": "https://images.nwslsoccer.com/image/private/t_ratio1_1-size20/prd/dicsxx85odybvarcifw1",
+    "format": "jpg",
+    "overriddenFormats": {},
+    "slug": "gettyimages-2275243612",
+    "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/photos/gettyimages-2275243612"
+   }
+  }
+ ]
+}
