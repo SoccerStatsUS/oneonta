@@ -15,7 +15,11 @@ from that collection.
   checking the way AGENTS.md describes — checked and rejected on 2026-09-09: the NYT
   soccer feed (twenty items across three years), US Soccer Players (quiet since July),
   Pro Soccer Wire, Sports Illustrated, NBC and the Guardian's USA tag (all answer
-  with HTML).
+  with HTML). Checked 2026-09-10: ussoccer.com is a Next.js site with no feed and
+  no data endpoint in the page, stories listed twelve at a time on `/stories`;
+  mlsnextpro.com is the same Deltatre index as MLS and would work with one line in
+  `feeds.INDEXES` and one in `articles.STORY_APIS`, but is twenty match previews
+  and recaps every two days, so it wants a tag filter first.
 - [ ] `--backfill MLSSoccer.com` would walk the content index back past 2016, some
   fifty thousand stories: about five hundred index pages, then days of page fetches
   at five seconds each. Decide whether the history is wanted before running it.
