@@ -1,7 +1,8 @@
 # oneonta
 
-Soccer news for the site. Reads RSS/Atom feeds, keeps every item and the text of
-its article in an archive under `data/`, and hands the build a flat list of items.
+Soccer news for the site. Reads RSS/Atom feeds (and one JSON index), keeps every
+item and the text of its article in an archive under `data/`, and hands the build a
+flat list of items.
 
 ## fetch.py
 
@@ -12,9 +13,10 @@ yet, five seconds apart. Stop it whenever; the next run carries on.
     cd ~/soccer
     build/.venv/bin/python -m oneonta.fetch [--limit N] [--no-feeds]
 
-`--backfill SOURCE` walks a Blogger feed back to its first post instead of reading
-the feeds; that is how du Nord and A Moment of Brilliance, both long finished, got
-their whole runs into the archive.
+`--backfill SOURCE` walks a feed back to its first post instead of reading the
+feeds, for the feeds that page: Blogger, which is how du Nord and A Moment of
+Brilliance, both long finished, got their whole runs into the archive, and the MLS
+content index, which reaches back past 2016 and has not been walked.
 
 Commit `data/` afterwards. The archive is the news history: the build reloads all of
 it every time, so nothing is lost when the database is rebuilt.
@@ -47,13 +49,21 @@ one, since its pages are paywalled to a teaser paragraph.
 
 - `feeds` — the feed list, `(source name, feed url)` pairs
 - `parse_document(doc, source)` — a feed document (bytes or str), parsed into dicts
-  sorted by date; this is what the tests exercise
+  sorted by date; this is what the tests exercise. A document opening with `{` is
+  taken for the MLS content index and parsed by `parse_stories`
+- `page(url, skip)` — the feed's items after the first `skip`, for `--backfill`
 - `parse_feed(url, source)` — fetch one feed and parse it; warns and returns `[]`
   on any fetch or parse failure
 - `parse_feeds()` — every feed in the list, concatenated
 
 Each item is `{title, summary, url, dt, source}`. `dt` is a naive local datetime;
 `source` is the display name from the feed list, not the url.
+
+mlssoccer.com stopped publishing RSS; its feed here is the JSON content index behind
+the site (`dapi.mlssoccer.com/v2/content/en-us/stories`), newest first, one hundred
+stories a page. Each story's page is `https://www.mlssoccer.com/news/<slug>`, and the
+article path fetches that like any other site. The index is the league's own output,
+so it carries vote promos and highlight roundups alongside the news.
 
 Run it on its own to print the newest items the feeds currently return:
 
@@ -90,10 +100,10 @@ Two couplings are worth knowing before editing the feed list:
 
 ## Current state
 
-Nine feeds. ESPN soccer and Soccer America for the daily volume, American Soccer
+Ten feeds. ESPN soccer and Soccer America for the daily volume, American Soccer
 Now (which publishes its whole archive back to 2012, about 6,500 items, a 6MB fetch),
 The Equalizer for the women's game, the Society for American Soccer History,
-Backheeled for the lower leagues, the Guardian's MLS tag, and two finished Blogger
-blogs whose full runs are archived: du Nord, the daily American soccer link roundup
-from 2005 to 2018, and A Moment of Brilliance. The archive holds them all and s2
+Backheeled for the lower leagues, the Guardian's MLS tag, MLSsoccer.com through its
+content index, and two finished Blogger blogs whose full runs are archived: du Nord,
+the daily American soccer link roundup from 2005 to 2018, and A Moment of Brilliance. The archive holds them all and s2
 serves them at `/news/`. See [ROADMAP.md](ROADMAP.md) for what needs doing.

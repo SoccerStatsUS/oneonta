@@ -58,8 +58,26 @@ def test_blogger_text():
     assert len(rows[0]['text']) > 50
     assert rows[1]['text'] == ['Just needed a break from things, sorry about that. Back soon.'] or len(rows[1]['text']) == 1
     assert rows[0]['url'].startswith('https://dunord.blogspot.com/2018/')
-    assert feeds.blogger_page('https://b.blogspot.com/feeds/posts/default', 151) == \
-        'https://b.blogspot.com/feeds/posts/default?max-results=150&start-index=151'
+    assert feeds.page('https://b.blogspot.com/feeds/posts/default', 100) == \
+        'https://b.blogspot.com/feeds/posts/default?max-results=100&start-index=101'
+
+
+def test_mls_stories_json():
+    rows = feeds.parse_document((FIXTURES / 'mlssoccer.json').read_bytes(), 'MLSSoccer.com')
+    assert len(rows) == 3
+    assert all(set(r) == KEYS for r in rows)
+    assert rows == sorted(rows, key=lambda r: r['dt'])
+    assert rows[-1]['title'] == 'Vote for Goal of the Matchday – MLS Matchday 25'
+    assert rows[-1]['url'] == 'https://www.mlssoccer.com/news/vote-for-goal-of-the-matchday-mls-matchday-25-2026'
+    assert rows[-1]['dt'] == local(2026, 9, 10, 16, 7, 39, 170000)
+    assert rows[-1]['summary'].startswith('It was a goal-filled and star-studded Matchday 25')
+    assert not any(r['dt'].tzinfo for r in rows)
+    url = 'https://dapi.mlssoccer.com/v2/content/en-us/stories?$limit=100'
+    assert feeds.page(url, 200) == url + '&$skip=200'
+    with pytest.warns(UserWarning, match='not a feed'):
+        assert feeds.parse_document('{"items": [{"slug": "x"}]}', 'X') == []
+    with pytest.warns(UserWarning, match='not a feed'):
+        assert feeds.parse_document(b'{"items": [', 'X') == []
 
 
 def test_no_text_key_without_content():

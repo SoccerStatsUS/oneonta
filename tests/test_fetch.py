@@ -111,7 +111,7 @@ def test_backfill_walks_the_pages(quiet, monkeypatch, capsys):
     import datetime
     url = 'https://dunord.blogspot.com/feeds/posts/default'
     monkeypatch.setattr(fetch.feeds, 'feeds', [('du Nord', url)])
-    monkeypatch.setattr(fetch.feeds, 'BLOGGER_PAGE', 2)
+    monkeypatch.setattr(fetch.feeds, 'PAGE', 2)
     pages = {
         1: [dict(item('https://dunord.blogspot.com/a'), source='du Nord', dt=datetime.datetime(2018, 1, 1), text=['a']),
             dict(item('https://dunord.blogspot.com/b'), source='du Nord', dt=datetime.datetime(2017, 1, 1), text=['b'])],

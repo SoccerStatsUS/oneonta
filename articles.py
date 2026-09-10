@@ -11,6 +11,7 @@ BODIES = {
     'www.espn.com': ('div', 'class', 'article-body'),
     'americansoccernow.com': ('div', 'id', 'article'),
     'www.theguardian.com': ('div', 'data-gu-name', 'body'),
+    'www.mlssoccer.com': ('div', 'class', 'oc-c-article__body'),
     # Soccer America's pages are paywalled to a teaser paragraph; feed only.
 }
 

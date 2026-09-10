@@ -10,11 +10,15 @@ from that collection.
 
 ## Feed List
 
-- [ ] The MLS network and the federations no longer publish RSS, so nothing here
-  speaks for the league or U.S. Soccer directly. Candidates need checking the way
-  AGENTS.md describes — checked and rejected on 2026-09-09: the NYT soccer feed
-  (twenty items across three years), US Soccer Players (quiet since July), Pro Soccer
-  Wire, Sports Illustrated, NBC and the Guardian's USA tag (all answer with HTML).
+- [ ] The federations no longer publish RSS, so nothing here speaks for U.S. Soccer
+  directly (mlssoccer.com is in through its JSON content index). Candidates need
+  checking the way AGENTS.md describes — checked and rejected on 2026-09-09: the NYT
+  soccer feed (twenty items across three years), US Soccer Players (quiet since July),
+  Pro Soccer Wire, Sports Illustrated, NBC and the Guardian's USA tag (all answer
+  with HTML).
+- [ ] `--backfill MLSSoccer.com` would walk the content index back past 2016, some
+  fifty thousand stories: about five hundred index pages, then days of page fetches
+  at five seconds each. Decide whether the history is wanted before running it.
 - [ ] Soccer America's article pages are paywalled, so its items carry the feed
   summary only. Revisit if a subscription or a full-text feed turns up.
 

@@ -7,10 +7,10 @@ every archived item that has no text yet.
     build/.venv/bin/python -m oneonta.fetch --backfill SOURCE [--limit N]
 
 Resumable: stop it whenever, and the next run carries on from the items still
-missing text. --backfill walks a Blogger feed's whole history instead of
-reading the feeds. Request policy is the scrapers repo's: five seconds between
-requests, one minute then five before giving up on a transient failure, and
-no retry on a 4xx other than 408 and 429.
+missing text. --backfill walks a feed's whole history instead of reading the
+feeds, where the feed pages (Blogger, the MLS content index). Request policy is
+the scrapers repo's: five seconds between requests, one minute then five before
+giving up on a transient failure, and no retry on a 4xx other than 408 and 429.
 """
 import argparse
 import sys
@@ -75,15 +75,15 @@ def update_items():
 
 
 def backfill(source):
-    """Walk a Blogger feed back to its first post."""
+    """Walk a feed back to its first post."""
     url = dict(feeds.feeds)[source]
-    rows, start = [], 1
+    rows, skip = [], 0
     while True:
-        page = feeds.parse_feed(feeds.blogger_page(url, start), source)
+        page = feeds.parse_feed(feeds.page(url, skip), source)
         if not page:
             break
         rows.extend(page)
-        start += feeds.BLOGGER_PAGE
+        skip += feeds.PAGE
         time.sleep(REQUEST_DELAY)
     print(f'{len(rows)} items in the history of {source}')
     return archive_rows(rows)
@@ -122,7 +122,7 @@ def main(argv=None):
     parser.add_argument('--no-feeds', action='store_true',
                         help='skip the feeds; only fetch text for archived items')
     parser.add_argument('--backfill', metavar='SOURCE',
-                        help="walk this Blogger feed's whole history instead of the feeds")
+                        help="walk this feed's whole history instead of the feeds")
     args = parser.parse_args(argv)
 
     if args.backfill:

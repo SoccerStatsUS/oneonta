@@ -1,5 +1,6 @@
 import calendar
 import datetime
+import json
 import urllib.request
 import warnings
 from html.parser import HTMLParser
@@ -10,6 +11,7 @@ from oneonta import articles
 
 MAX_LEN = 1023
 TIMEOUT = 60
+PAGE = 100
 
 feeds = [
     ('ESPN.com', 'https://www.espn.com/espn/rss/soccer/news'),
@@ -26,14 +28,21 @@ feeds = [
     ('du Nord', 'https://dunord.blogspot.com/feeds/posts/default'),
     ('A Moment of Brilliance: A Soccer History Blog',
      'https://amofb.blogspot.com/feeds/posts/default'),
+    # No RSS; this is the JSON content index behind the site, newest first.
+    ('MLSSoccer.com', f'https://dapi.mlssoccer.com/v2/content/en-us/stories?$limit={PAGE}'),
 ]
 
-BLOGGER_PAGE = 150
+STORY_URL = 'https://www.mlssoccer.com/news/{}'
 
 
-def blogger_page(url, start):
-    """Blogger pages its whole history: start-index counts entries from 1."""
-    return f'{url}?max-results={BLOGGER_PAGE}&start-index={start}'
+def page(url, skip):
+    """
+    The feed's items after the first `skip`, for walking a whole history.
+    Blogger counts entries from 1; the dapi index skips from 0.
+    """
+    if 'dapi.mlssoccer.com' in url:
+        return f'{url}&$skip={skip}'
+    return f'{url}?max-results={PAGE}&start-index={skip + 1}'
 
 
 class _Text(HTMLParser):
@@ -52,7 +61,28 @@ def strip_html(s):
     return ' '.join(''.join(p.parts).split())
 
 
+def parse_stories(data, source):
+    """The dapi content index: title, slug, summary and a UTC contentDate."""
+    l = []
+    for item in data['items']:
+        dt = datetime.datetime.fromisoformat(item['contentDate'])
+        l.append({
+            'title': item.get('title', '')[:MAX_LEN],
+            'summary': strip_html(item.get('summary') or '')[:MAX_LEN],
+            'url': STORY_URL.format(item['slug'])[:MAX_LEN],
+            'dt': dt.astimezone().replace(tzinfo=None),
+            'source': source,
+        })
+    return sorted(l, key=lambda e: e['dt'])
+
+
 def parse_document(doc, source):
+    if doc.lstrip()[:1] in (b'{', '{'):
+        try:
+            return parse_stories(json.loads(doc), source)
+        except (ValueError, KeyError, TypeError):
+            warnings.warn(f'{source}: not a feed')
+            return []
     data = feedparser.parse(doc)
     if not data.version:
         warnings.warn(f'{source}: not a feed')

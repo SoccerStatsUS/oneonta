@@ -29,6 +29,14 @@ def test_guardian():
     assert paragraphs[-1].startswith('It’s perhaps remarkable')
 
 
+def test_mlssoccer():
+    url = 'https://www.mlssoccer.com/news/brotherly-love-cavan-sullivan-steals-show-in-philadelphia-rout'
+    paragraphs = articles.extract(url, (FIXTURES / 'mlssoccer_article.html').read_text())
+    assert len(paragraphs) == 19
+    assert paragraphs[0].startswith('Another Philadelphia Union victory')
+    assert paragraphs[-1].startswith('The Union now take their show on the road')
+
+
 def test_class_matches_one_of_several():
     html = '<div class="wrap article-body x"><p>one</p></div>'
     assert articles.extract(ESPN, html) == ['one']
